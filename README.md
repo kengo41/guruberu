@@ -40,3 +40,6 @@
 - JavaScript
 - Heroku
 - Google Maps Platform
+
+### 画面遷移図
+https://www.figma.com/file/Y2QhipdKZ4TfDXtJucFOBO/local_gourmet?type=design&node-id=0%3A1&mode=design&t=TZEdgbcbeC46SJoQ-1
