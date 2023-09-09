@@ -43,3 +43,6 @@
 
 ### 画面遷移図
 https://www.figma.com/file/Y2QhipdKZ4TfDXtJucFOBO/local_gourmet?type=design&node-id=0%3A1&mode=design&t=ohUvSTgdp4YkhhEp-1
+
+### ER図
+https://drive.google.com/file/d/1RaFP_6mdJL9C4oc8E7Pjt1GdPEaKjW3A/view?usp=sharing
