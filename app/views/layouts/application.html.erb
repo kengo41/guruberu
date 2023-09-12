@@ -12,7 +12,10 @@
 
   <body>
     <%= render 'shared/header' %>
-    <%= yield %>
+    <%= render 'shared/flash_message' %>
+    <div class="bg-orange-100">
+      <%= yield %>
+    </div>
     <%= render 'shared/footer' %>
   </body>
 </html>
