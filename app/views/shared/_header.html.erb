@@ -1,13 +1,17 @@
 <header class="bg-orange-500 p-4">
   <nav class="container mx-auto flex justify-between items-center">
-    <div class="flex items-center">
+    <%= link_to root_path, class: 'flex items-center' do %>
       <%= image_tag 'logo.png', class: 'h-10- w-10 mr-2' %>
       <%= image_tag 'name.png', class: 'h-10 w-30 mr-2' %>
+    <% end %>
+    <div class="flex space-x-4 text-white">
+      <%= link_to '今すぐ探す', '#', class: 'hover:text-orange-300' %></li>
+      <%= link_to 'ご当地グルメを見る', '#', class: 'hover:text-orange-300' %></li>
+      <% if user_signed_in? %>
+        <%= link_to 'ログアウト', destroy_user_session_path, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'hover:text-orange-300' %></li>
+      <% else %>
+        <%= link_to 'ログイン', new_user_session_path, class: 'hover:text-orange-300' %></li>
+      <% end %>
     </div>
-    <ul class="flex space-x-4 text-white">
-      <li><a href="#" class="hover:text-orange-300">今すぐ探す</a></li>
-      <li><a href="#" class="hover:text-orange-300">ご当地グルメを見る</a></li>
-      <li><a href="#" class="hover:text-orange-300">ログイン</a></li>
-    </ul>
   </nav>
 </header>
