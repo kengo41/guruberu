@@ -1,7 +1,7 @@
 <div class="min-h-screen flex justify-center items-center">
   <div class="flex flex-col items-center">
     <div class="text-2xl font-semibold mb-4">
-      Sign up
+      <%= t('.sign_up') %>
     </div>
     <div class="bg-white p-8 rounded-lg shadow-md">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -20,7 +20,7 @@
         <div class="mb-4">
           <%= f.label :password, class: "block font-semibold text-gray-700" %>
           <% if @minimum_password_length %>
-            <em class="text-gray-600 text-sm">(<%= @minimum_password_length %> characters minimum)</em>
+            <em class="text-gray-600 text-sm"><%= t('users.shared.minimum_password_length', count: @minimum_password_length) %></em>
           <% end %>
           <%= f.password_field :password, autocomplete: "new-password", class: "w-full border border-gray-300 rounded p-2" %>
         </div>
@@ -30,8 +30,8 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full border border-gray-300 rounded p-2" %>
         </div>
 
-        <div class="text-center">
-          <%= f.submit "Sign up", class: "bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300" %>
+        <div class="text-center mb-8">
+          <%= f.submit t('.sign_up'), class: "bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300" %>
         </div>
       <% end %>
 
