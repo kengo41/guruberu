@@ -1,7 +1,11 @@
 ja:
   defaults:
-    sign_up:  'アカウント登録'
-    sign_in: 'ログイン'
-    sign_out: 'ログアウト'
-    search_map: 'マップ検索'
-    search_gourmet: 'ご当地グルメを探す'
+    sign_up:  アカウント登録
+    sign_in: ログイン
+    sign_out: ログアウト
+    search_map: マップ検索
+    search_gourmet: ご当地グルメを探す
+    my_page: マイページ
+    profile_edit: プロフール編集
+    message:
+      updated: 更新しました
