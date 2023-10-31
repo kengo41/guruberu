@@ -1,10 +1,15 @@
 <div class="grid place-items-center mt-10">
-  <%= form_with(url: home_path, method: :get) do |form| %>
+  <%= form_with(url: home_path, method: :get, html: { class: 'rounded-lg p-4' }) do |form| %>
     <div class="flex items-center border-b border-b-2 border-orange-500 py-2">
       <%= form.text_field :address, placeholder: '住所を入力', class: 'appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none' %>
       <%= form.submit '検索', class: 'flex-shrink-0 bg-orange-500 hover:bg-orange-700 border-orange-500 hover:border-orange-700 text-sm border-4 text-white py-1 px-2 rounded' %>
     </div>
   <% end %>
+
+  <div id="map" class="w-11/12 h-96 rounded-xl"></div>
+  <%= javascript_include_tag "google_maps" %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+
   <div class="card w-11/12 bg-base-100 shadow-lg z-0 mt-10 mb-10">
     <div class="card-body p-10">
       <div class="flex flex-col justify-center items-center h-full">

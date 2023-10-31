@@ -2,8 +2,13 @@ class ShopsController < ApplicationController
   skip_before_action :authenticate_user!
 
   def home
+    gon.latitude = 34.397667
+    gon.longitude = 132.4728037
+
     @address = params[:address]
     @shops = fetch_nearby_shops(@address)
+
+    gon.markerData = @shops
   end
 
   private
@@ -17,6 +22,8 @@ class ShopsController < ApplicationController
     longitude = result&.longitude
 
     if latitude && longitude
+      gon.latitude = latitude
+      gon.longitude = longitude
       # Google Places APIにリクエストして飲食店情報を取得
       places_client.spots(latitude, longitude, types: ['restaurant'], keyword: '広島風お好み焼き', radius: 50, language: 'ja')
     else
