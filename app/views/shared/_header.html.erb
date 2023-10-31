@@ -3,7 +3,7 @@
     <%= link_to image_tag('headerlogo.png', class: 'h-10 w-40'), root_path %>
     <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
       <div class="flex space-x-4">
-        <%= link_to t('defaults.search_shop'), '#', class: 'hover:text-orange-300' %></li>
+        <%= link_to t('defaults.search_shop'), home_path, class: 'hover:text-orange-300' %></li>
         <%= link_to t('defaults.search_gourmet'), '#', class: 'hover:text-orange-300' %></li>
         <% if user_signed_in? %>
           <%= link_to t('defaults.my_page'), my_page_path, class: 'hover:text-orange-300' %></li>

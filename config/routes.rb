@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   devise_for :users
   resource :my_page, only: %i[show edit update]
+  get 'home', to: 'shops#home'
 end
