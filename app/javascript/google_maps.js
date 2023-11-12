@@ -35,3 +35,34 @@ function markerEvent(i) {
     currentInfoWindow = infoWindow[i];
   });
 }
+
+// 位置情報を取得する関数
+function getCurrentLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var currentLat = position.coords.latitude;
+      var currentLng = position.coords.longitude;
+
+      // マップを現在位置にセンタリング
+      map.setCenter(new google.maps.LatLng(currentLat, currentLng));
+
+      // ここで現在位置を使って検索を実行
+      fetchNearbyShopsByLocation(currentLat, currentLng);
+    }, function(error) {
+      // エラー処理
+      console.error("位置情報の取得に失敗しました: " + error.message);
+    });
+  } else {
+    console.error("Geolocationがサポートされていません");
+  }
+}
+
+// 現在位置を使って検索を実行する関数
+function fetchNearbyShopsByLocation(lat, lng) {
+  window.location.href = `/home?latitude=${lat}&longitude=${lng}`;
+}
+
+// 「現在の位置を取得」ボタンがクリックされたときの処理
+document.getElementById("getCurrentLocationButton").addEventListener("click", function() {
+  getCurrentLocation();
+});
