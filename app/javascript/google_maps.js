@@ -7,7 +7,7 @@ var currentInfoWindow = null;
 
 window.initMap = function() {
   map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 16,
+    zoom: 14,
     center: new google.maps.LatLng(lat, lng),
   });
 
@@ -38,6 +38,7 @@ function markerEvent(i) {
 
 // 「現在の位置を取得」ボタンがクリックされたときの処理
 document.getElementById("getCurrentLocationButton").addEventListener("click", function() {
+  showLoadingIndicator();
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
       function(position) {
@@ -53,3 +54,13 @@ document.getElementById("getCurrentLocationButton").addEventListener("click", fu
     console.error("Geolocationがサポートされていません");
   }
 });
+
+// 「検索」ボタンがクリックされたときの処理
+document.getElementById("searchButton").addEventListener("click", function() {
+  showLoadingIndicator();
+});
+
+// ローディングアイコン表示関数
+function showLoadingIndicator() {
+  document.getElementById("loadingIndicator").style.display = "block";
+}
