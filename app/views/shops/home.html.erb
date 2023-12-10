@@ -16,24 +16,16 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
 
   <div class="card w-11/12 bg-base-100 shadow-md z-0 mt-10 mb-10">
-      <div class="card-body p-10 flex flex-col justify-center items-center h-full">
-        <h2 class="text-left text-3xl border-b border-gray-500 w-11/12 p-5">お店</h2>
-          <div class="w-11/12">
-              <% if @shops.any? %>
-                <ul>
-                  <% @shops.each do |shop| %>
-                    <div class="w-11/12 card bg-base-200 border-gray-500 shadow-xl m-5">
-                      <li class="pl-6 pt-6 text-3xl underline"><%= shop.name %></li>
-                      <li class="pl-6 pt-4"><%= shop.vicinity %></li>
-                      <li class="pl-6 pt-1.5"><%= shop.formatted_phone_number %></li>
-                    </div>
-                  <% end %>
-                </ul>
-              <% else %>
-                <p class="text-2xl py-5 text-center">お店が見つかりません</p>
-              <% end %>
-          </div>
+    <div class="flex flex-col justify-center items-center h-full">
+      <h2 class="text-left text-3xl border-b border-gray-500 w-11/12 p-5">お店</h2>
+        <div class="w-11/12">
+          <% if @shops.any? %>
+            <%= render @shops %>
+          <% else %>
+            <p class="text-2xl py-5 text-center">お店が見つかりません</p>
+          <% end %>
         </div>
       </div>
+    </div>
   </div>
 </div>

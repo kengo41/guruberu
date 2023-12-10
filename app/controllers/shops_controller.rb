@@ -13,23 +13,54 @@ class ShopsController < ApplicationController
         gon.latitude = location.latitude
         gon.longitude = location.longitude
         prefecture = get_prefecture_from_coordinates(gon.latitude, gon.longitude)
-        @shops = fetch_shops_by_prefecture(prefecture)
+        places_data = fetch_shops_by_prefecture(prefecture)
       else
-        @shops = []
+        places_data = []
       end
     elsif params[:latitude].present? && params[:longitude].present?
       gon.latitude = params[:latitude]
       gon.longitude = params[:longitude]
       prefecture = get_prefecture_from_coordinates(gon.latitude, gon.longitude)
-      @shops = fetch_shops_by_prefecture(prefecture)
+      places_data = fetch_shops_by_prefecture(prefecture)
     else
-      @shops = []
+      places_data = []
     end
 
-    gon.markerData = @shops
+    gon.markerData = places_data
+
+    @shops = places_data.map do |place_data|
+      shop = Shop.find_or_initialize_by(place_id: place_data.place_id)
+      unless shop.persisted?
+
+        if place_data.photos.present?
+          photo = place_data.photos.first
+          photo_url = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{photo.photo_reference}&key=#{ENV['API_KEY']}"
+        end
+
+        shop.attributes = {
+          name: place_data.name,
+          address: place_data.formatted_address || place_data.vicinity,
+          phone_number: place_data.formatted_phone_number,
+          opening_hours: place_data.opening_hours&.[]("weekday_text")&.join(", ") || "N/A",
+          image: photo_url,
+          place_id: place_data.place_id,
+          latitude: place_data.lat,
+          longitude: place_data.lng,
+          rating: place_data.rating,
+          # total_ratings: place_data.user_ratings_total || 0,
+          price_level: place_data.price_level
+        }
+        shop.save
+      end
+      shop
+    end
   end
 
   private
+
+  def shop_params
+    params.permit(:address, :latitude, :longitude)
+  end
 
   # 都道府県に基づいて店舗を取得
   def fetch_shops_by_prefecture(prefecture)
