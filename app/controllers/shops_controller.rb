@@ -43,6 +43,7 @@ class ShopsController < ApplicationController
           phone_number: place_data.formatted_phone_number,
           opening_hours: place_data.opening_hours&.[]("weekday_text")&.join(", ") || "N/A",
           image: photo_url,
+          website: place_data.website,
           place_id: place_data.place_id,
           latitude: place_data.lat,
           longitude: place_data.lng,
@@ -54,6 +55,12 @@ class ShopsController < ApplicationController
       end
       shop
     end
+  end
+
+  def show
+    @shop = Shop.find(params[:id])
+    gon.latitude = @shop.latitude
+    gon.longitude = @shop.longitude
   end
 
   private
