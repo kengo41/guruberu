@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'terms', to: 'static_pages#terms'
   get 'privacy_policy', to: 'static_pages#privacy_policy'
   get 'home', to: 'shops#home'
+  get 'gourmets', to: 'gourmets#index'
   devise_for :users
   resource :my_page, only: %i[show edit update]
   resources :shops, only: %i[show]
