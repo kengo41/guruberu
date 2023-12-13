@@ -1054,7 +1054,7 @@ Gourmet.find_or_create_by!(
   gourmet.image.attach(io: File.open(Rails.root.join('db/fixtures/images/icon132.jpeg')), filename: 'icon132.jpeg')
 end
 Gourmet.find_or_create_by!(
-  name: 'お好み焼き',
+  name: '広島風お好み焼き',
   description: '広島では生地の上にキャベツなどを重ねて焼いていく重ね焼が主流。これに中華そばなどの麺が加わることが多く、カットすると断面が層のようになっているのが特徴です。',
   prefecture_id: 34
 ).tap do |gourmet|

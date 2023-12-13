@@ -2,7 +2,14 @@
   <div class="flex items-center">
     <%= image_tag shop.image || 'logo.png', class: 'w-48 h-48 object-cover rounded-3xl' %>
     <div class="ml-4">
-      <%= link_to shop.name, shop_path(shop), class: "text-xl font-semibold hover:text-yellow-500"%>
+      <div class="flex items-center mb-2">
+        <% shop.gourmets.each do |gourmet| %>
+          <p class="bg-orange-500 text-white py-1 px-2 rounded-full text-xs font-semibold">
+            <%= gourmet.name %>
+          </p>
+        <% end %>
+      </div>
+      <%= link_to shop.name, shop_path(shop), class: 'text-xl font-semibold hover:text-yellow-500' %>
       <p class="text-sm md:text-base text-gray-600"><%= shop.address %></p>
       <p class="text-sm md:text-base text-gray-600"><%= shop.phone_number %></p>
       <a href="https://www.google.com/maps/search/?api=1&query=<%= shop.name %>&query_place_id=<%= shop.place_id %>" target="_blank" rel="noopener noreferrer" class="inline-block mt-2 px-4 py-2 text-xs md:text-sm font-semibold text-white bg-blue-500 rounded-full hover:bg-blue-600">
