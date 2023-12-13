@@ -4,9 +4,7 @@
     <div class="ml-4">
       <div class="flex items-center mb-2">
         <% shop.gourmets.each do |gourmet| %>
-          <p class="bg-orange-500 text-white py-1 px-2 rounded-full text-xs font-semibold">
-            <%= gourmet.name %>
-          </p>
+          <%= link_to gourmet.name, gourmet_path(gourmet), class: "bg-orange-500 text-white py-1 px-2 text-xs font-semibold hover:bg-orange-600" %>
         <% end %>
       </div>
       <%= link_to shop.name, shop_path(shop), class: 'text-xl font-semibold hover:text-yellow-500' %>

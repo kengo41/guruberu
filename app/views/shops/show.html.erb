@@ -17,6 +17,7 @@
         <p class="pl-20 mt-4 text-lg">ホームページ：<%= @shop.website %></p>
         <p class="pl-20 mt-4 text-lg">評価：<%= @shop.rating %></p>
         <p class="pl-20 mt-4 text-lg">価格帯：<%= @shop.price_level %></p>
+        <%= link_to '戻る', :back, class: "text-blue-500 hover:underline text-right" %>
       </div>
       <div id="map" class="w-1/3 h-hull rounded-xl"></div>
       <%= javascript_include_tag "google_maps" %>

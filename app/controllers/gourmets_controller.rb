@@ -15,4 +15,10 @@ class GourmetsController < ApplicationController
       format.js
     end
   end
+
+  def show
+    @gourmet = Gourmet.find(params[:id])
+    @gourmets = Gourmet.where(prefecture_id: @gourmet.prefecture_id).where.not(id: @gourmet.id)
+    @shops = @gourmet.shops.order("RANDOM()").limit(3)
+  end
 end
