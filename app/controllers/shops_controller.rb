@@ -52,6 +52,9 @@ class ShopsController < ApplicationController
           price_level: place_data.price_level
         }
         shop.save
+
+        gourmets = Gourmet.where(name: place_data.keyword)
+        shop.gourmets << gourmets
       end
       shop
     end
@@ -72,100 +75,100 @@ class ShopsController < ApplicationController
   # 都道府県に基づいて店舗を取得
   def fetch_shops_by_prefecture(prefecture)
     case prefecture
-    when 'Hokkaido'
-      fetch_shops(['ジンギスカン', 'スープカレー', '札幌ラーメン'])
-    when 'Aomori'
-      fetch_shops(['十和田バラ焼き', 'せんべい汁'])
-    when 'Iwate'
-      fetch_shops(['盛岡冷麺'])
-    when 'Miyagi'
-      fetch_shops(['牛タン', '仙台ラーメン'])
-    when 'Akita'
-      fetch_shops(['きりたんぽ'])
-    when 'Yamagata'
-      fetch_shops(['米沢牛'])
-    when 'Fukushima'
-      fetch_shops(['喜多方ラーメン'])
-    when 'Tochigi'
-      fetch_shops(['宇都宮餃子'])
-    when 'Gunma'
-      fetch_shops(['すき焼き', 'ひもかわうどん', '水沢うどん'])
-    when 'Ibaraki'
-      fetch_shops(['あんこう鍋'])
-    when 'Saitama'
-      fetch_shops(['熊谷うどん'])
-    when 'Chiba'
-      fetch_shops(['なめろう'])
-    when 'Tokyo'
-      fetch_shops(['月島もんじゃ', '江戸前寿司', '深川めし'])
-    when 'Kanagawa'
-      fetch_shops(['しらす'])
-    when 'Niigata'
-      fetch_shops(['のどぐろ'])
-    when 'Yamanashi'
-      fetch_shops(['吉田うどん', 'ほうとう'])
-    when 'Nagano'
-      fetch_shops(['戸隠そば', '富倉そば'])
-    when 'Toyama'
-      fetch_shops(['富山ブラックラーメン', 'ます寿司'])
-    when 'Ishikawa'
-      fetch_shops(['能登丼', '金沢カレー'])
-    when 'Fukui'
-      fetch_shops(['越前がに', '越前そば'])
-    when 'Shizuoka'
-      fetch_shops(['うな重', '富士宮やきそば'])
-    when 'Gifu'
-      fetch_shops(['飛騨牛'])
-    when 'Aichi'
-      fetch_shops(['手羽先', 'ひつまぶし'])
-    when 'Mie'
-      fetch_shops(['赤福氷', 'てこね寿司'])
-    when 'Shiga'
-      fetch_shops(['ふなずし', '近江牛'])
-    when 'Kyoto'
-      fetch_shops(['京のおばんざい'])
-    when 'Osaka'
-      fetch_shops(['たこ焼き', '串カツ', 'てっちり'])
-    when 'Hyogo'
-      fetch_shops(['姫路おでん', '神戸牛'])
-    when 'Nara'
-      fetch_shops(['三輪そうめん', '釜めし'])
-    when 'Wakayama'
-      fetch_shops(['和歌山ラーメン', 'めはりずし'])
-    when 'Tottori'
-      fetch_shops(['モサエビ', 'かに汁'])
-    when 'Shimane'
-      fetch_shops(['出雲そば'])
-    when 'Okayama'
-      fetch_shops(['岡山カレー', 'ばら寿司'])
-    when 'Hiroshima'
-      fetch_shops(['広島風お好み焼き', '牡蠣', '尾道ラーメン'])
-    when 'Yamaguchi'
-      fetch_shops(['ふぐ', '瓦そば', '岩国寿司'])
-    when 'Tokushima'
-      fetch_shops(['徳島ラーメン'])
-    when 'Kagawa'
-      fetch_shops(['讃岐うどん'])
-    when 'Ehime'
-      fetch_shops(['宇和島鯛めし', '松山鯛めし'])
-    when 'Kochi'
-      fetch_shops(['かつお'])
-    when 'Fukuoka'
-      fetch_shops(['水炊き', 'もつ鍋', '明太子'])
-    when 'Saga'
-      fetch_shops(['呼子のイカ'])
-    when 'Nagasaki'
-      fetch_shops(['佐世保バーガー'])
-    when 'Kumamoto'
-      fetch_shops(['熊本馬刺し', 'だご汁'])
-    when 'Oita'
-      fetch_shops(['佐伯海鮮丼', 'とり天'])
-    when 'Miyazaki'
-      fetch_shops(['みやざき地頭鶏'])
-    when 'Kagoshima'
-      fetch_shops(['白くま'])
-    when 'Okinawa'
-      fetch_shops(['ソーキそば', 'ゴーヤチャンプルー'])
+    when '北海道'
+      fetch_shops(['ジンギスカン', 'スープカレー', '札幌ラーメン', '海鮮丼'])
+    when '青森県'
+      fetch_shops(['十和田バラ焼き', 'せんべい汁', 'つゆ焼きそば', '大間マグロ'])
+    when '岩手県'
+      fetch_shops(['盛岡冷麺', 'わんこそば', 'じゃじゃ麺', '前沢牛'])
+    when '宮城県'
+      fetch_shops(['牛タン', 'ずんだ', '笹かまぼこ', 'はらこ飯'])
+    when '秋田県'
+      fetch_shops(['きりたんぽ', '比内地鶏', '横手焼きそば', 'ハタハタ'])
+    when '山形県'
+      fetch_shops(['米沢牛', '芋煮', '玉こんにゃく', '米沢ラーメン'])
+    when '福島県'
+      fetch_shops(['喜多方ラーメン', 'なみえ焼きそば', '円盤餃子', 'ソースカツ丼'])
+    when '茨城県'
+      fetch_shops(['あんこう鍋', '常陸牛', '水戸納豆', '常陸秋そば'])
+    when '栃木県'
+      fetch_shops(['宇都宮餃子', '佐野ラーメン', '宇都宮焼きそば', 'いもフライ'])
+    when '群馬県'
+      fetch_shops(['ひもかわうどん', '焼きまんじゅう', 'おっきりこみ', '水沢うどん'])
+    when '埼玉県'
+      fetch_shops(['豆腐らーめん', 'すったて', 'くるみそば', '煮ぼうとう'])
+    when '千葉県'
+      fetch_shops(['なめろう', '勝浦タンタンメン', 'ホワイト餃子', '竹岡ラーメン'])
+    when '東京都'
+      fetch_shops(['江戸前寿司', '深川めし', 'もんじゃ焼き', 'どぜう鍋'])
+    when '神奈川県'
+      fetch_shops(['サンマーメン', '横浜家系ラーメン', '牛鍋', 'しらす'])
+    when '新潟県'
+      fetch_shops(['へぎそば', 'イタリアン焼きそば', 'タレかつ丼', 'のどぐろ'])
+    when '富山県'
+      fetch_shops(['富山ブラックラーメン', 'ホタルイカ', 'ます寿司', '氷見うどん'])
+    when '石川県'
+      fetch_shops(['能登丼', '金沢カレー', 'ハントンライス', '金沢おでん'])
+    when '福井県'
+      fetch_shops(['越前がに', '越前そば', 'ソースカツ丼', 'ボルガライス'])
+    when '山梨県'
+      fetch_shops(['ほうとう', '吉田うどん', '甲府鳥もつ煮', '甲州ワインビーフ'])
+    when '長野県'
+      fetch_shops(['信州そば', 'おやき', '信州サーモン', '山賊焼き'])
+    when '岐阜県'
+      fetch_shops(['飛騨牛', '鶏ちゃん', '高山ラーメン', '朴葉味噌'])
+    when '静岡県'
+      fetch_shops(['静岡おでん', '富士宮やきそば', '浜松餃子', 'うなぎ'])
+    when '愛知県'
+      fetch_shops(['手羽先', 'ひつまぶし', '味噌カツ', 'きしめん'])
+    when '三重県'
+      fetch_shops(['伊勢うどん', 'てこね寿司', '松阪牛', '伊勢海老'])
+    when '滋賀県'
+      fetch_shops(['近江牛', '近江ちゃんぽん', 'ふなずし', '鴨鍋'])
+    when '京都府'
+      fetch_shops(['おばんざい', '湯豆腐', '京都ラーメン', '抹茶スイーツ'])
+    when '大阪府'
+      fetch_shops(['たこ焼き', '串カツ', 'お好み焼き', 'てっちり'])
+    when '兵庫県'
+      fetch_shops(['明石焼き', '神戸牛', '姫路おでん', 'そばめし'])
+    when '奈良県'
+      fetch_shops(['三輪そうめん', '柿の葉寿司', '天理ラーメン', '飛鳥鍋'])
+    when '和歌山県'
+      fetch_shops(['和歌山ラーメン', 'めはり寿司', '生まぐろ', 'クエ鍋'])
+    when '鳥取県'
+      fetch_shops(['鳥取牛骨ラーメン', 'モサエビ', '松葉がに', 'ホルそば'])
+    when '島根県'
+      fetch_shops(['出雲そば', 'のどぐろ', '松江おでん', 'しじみ'])
+    when '岡山県'
+      fetch_shops(['津山ホルモンうどん', 'デミかつ丼', 'ばらずし', 'えびめし'])
+    when '広島県'
+      fetch_shops(['広島風お好み焼き', '牡蠣', '広島つけ麺', '尾道ラーメン'])
+    when '山口県'
+      fetch_shops(['ふぐ', '瓦そば', '岩国寿司', 'ばりそば'])
+    when '徳島県'
+      fetch_shops(['徳島ラーメン', '阿波尾鶏', '鳴門鯛', '祖谷そば'])
+    when '香川県'
+      fetch_shops(['讃岐うどん', '骨付鳥', 'ぴっぴ飯', 'かっしゃ焼'])
+    when '愛媛県'
+      fetch_shops(['鯛めし', '八幡浜ちゃんぽん', '今治焼き鳥', '焼豚玉子飯'])
+    when '高知県'
+      fetch_shops(['カツオ', '鍋焼きラーメン', '屋台餃子', '室戸キンメ丼'])
+    when '福岡県'
+      fetch_shops(['博多ラーメン', 'もつ鍋', 'とり皮', '辛子明太子'])
+    when '佐賀県'
+      fetch_shops(['シシリアンライス', '佐賀牛', '呼子イカ', '竹崎かに'])
+    when '長崎県'
+      fetch_shops(['長崎ちゃんぽん', '皿うどん', 'レモンステーキ', '佐世保バーガー'])
+    when '熊本県'
+      fetch_shops(['馬肉', '太平燕', '熊本ラーメン', 'あか牛'])
+    when '大分県'
+      fetch_shops(['とり天', '地獄蒸し料理', '別府冷麺', 'りゅうきゅう'])
+    when '宮崎県'
+      fetch_shops(['チキン南蛮', '辛麺', '地鶏炭火焼き', '宮崎牛'])
+    when '鹿児島県'
+      fetch_shops(['つけあげ', 'かごしま黒豚', '鹿児島ラーメン', 'しろくま'])
+    when '沖縄県'
+      fetch_shops(['沖縄そば', 'ゴーヤチャンプルー', 'タコライス', '海ぶどう'])
     else
       []
     end
@@ -175,17 +178,23 @@ class ShopsController < ApplicationController
   def fetch_shops(keywords)
     unique_shops = {}
     keywords.each do |keyword|
-      results = @client.spots(gon.latitude, gon.longitude, radius: 1000, types: ['restaurant'], keyword: keyword, language: 'ja', rankby: 'prominence').first(10)
+      results = @client.spots(gon.latitude, gon.longitude, radius: 1000, types: ['restaurant'], keyword: keyword, language: 'ja', rankby: 'prominence').first(5)
       results.each do |result|
-        unique_shops[result.place_id] = result if !unique_shops.key?(result.place_id)
+        if !unique_shops.key?(result.place_id)
+          result.keyword = []
+          result.keyword << keyword
+          unique_shops[result.place_id] = result
+        else
+          unique_shops[result.place_id].keyword << keyword
+        end
       end
     end
-    unique_shops.values.first(20)
+    unique_shops.values
   end
 
   # 座標から都道府県を取得する
   def get_prefecture_from_coordinates(latitude, longitude)
-    response = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{latitude},#{longitude}&key=#{ENV['API_KEY']}")
+    response = HTTParty.get("https://maps.googleapis.com/maps/api/geocode/json?latlng=#{latitude},#{longitude}&key=#{ENV['API_KEY']}&language=ja")
 
     if response.code == 200
       result = JSON.parse(response.body)
