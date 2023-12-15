@@ -23,6 +23,7 @@
                   GoogleMap
                 </a>
               </div>
+              <%= link_to "削除", bookmark_path(shop_id: shop),  data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？"  }, class: 'w-20 h12 rounded-xl ml-auto mr-10 mt-32 m-5 btn bg-red-500' %>
             </div>
           </div>
         <% end %>

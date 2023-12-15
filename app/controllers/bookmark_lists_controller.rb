@@ -1,5 +1,5 @@
 class BookmarkListsController < ApplicationController
-  before_action :set_list, only: %i[show edit update]
+  before_action :set_list, only: %i[show edit update destroy]
 
   def index
     @bookmark_lists = current_user.bookmark_lists
@@ -34,6 +34,12 @@ class BookmarkListsController < ApplicationController
     end
   end
 
+  def destroy
+    if @bookmark_list.destroy!
+      redirect_to my_page_path, success: "リストを削除しました"
+    end
+  end
+
   private
 
   def list_params
@@ -41,6 +47,6 @@ class BookmarkListsController < ApplicationController
   end
 
   def set_list
-    @bookmark_list = BookmarkList.find(params[:id])
+    @bookmark_list = current_user.bookmark_lists.find(params[:id])
   end
 end

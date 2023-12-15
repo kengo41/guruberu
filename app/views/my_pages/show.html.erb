@@ -15,7 +15,10 @@
         <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5">マイリスト</h2>
         <% @bookmark_lists.each do |list| %>
           <div class="card w-11/12 bg-base-200 border-gray-500 shadow-md m-2">
-            <%= link_to list.name, bookmark_list_path(list), class: 'text-left p-3'%>
+            <div class="flex justify-between p-7">
+              <%= link_to list.name, bookmark_list_path(list), class: 'text-left p-3'%>
+              <%= link_to '削除', bookmark_list_path(list), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'btn bg-red-500 mb-1' %>
+            </div>
           </div>
         <% end %>
       </div>
