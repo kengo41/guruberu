@@ -2,18 +2,17 @@
   <div id="myModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="modal" data-modal-target="backGround" data-action="click->modal#closeBackground">
     <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-[450px]" data-modal-target="myModal">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-base md:text-lg font-semibold">リストへ保存</h2>
+        <h2 class="text-base md:text-lg font-semibold">新しいリスト</h2>
         <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->modal#closeModal"></i>
       </div>
-      <% @bookmark_lists.each do |list| %>
-        <div class="flex justify-center mb-5 border-b pb-2 list-button" data-action="click->modal#close" data-list-id="<%= list.id %>">
-        <button><%= list.name %></button>
+      <%= form_with model: @bookmark_list, data: { action: "turbo:submit-end->modal#closeModal"} do |f| %>
+        <div class="flex flex-col justify-center mt-4">
+          <%= f.text_field :name, class: 'input input-warning border-gray-800' %>
+          <div class="ml-auto">
+            <%= f.submit "作成", class: 'btn btn-neutral mt-5' %>
+          </div>
         </div>
       <% end %>
-      <div class="flex justify-center border-b pb-2">
-        <i class="fa-solid fa-plus mt-1 mr-2"></i>
-        <%= link_to "リストを作成", new_bookmark_list_path, data: { turbo_frame: 'modal' }, class: 'text-center' %>
-      </div>
     </div>
   </div>
 <% end %>
