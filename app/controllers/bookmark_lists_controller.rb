@@ -1,7 +1,11 @@
 class BookmarkListsController < ApplicationController
+  before_action :set_list, only: %i[show]
+
   def index
     @bookmark_lists = current_user.bookmark_lists
   end
+
+  def show; end
 
   def new
     @bookmark_list = current_user.bookmark_lists.build
@@ -20,5 +24,9 @@ class BookmarkListsController < ApplicationController
 
   def list_params
     params.require(:bookmark_list).permit(:name)
+  end
+
+  def set_list
+    @bookmark_list = BookmarkList.find(params[:id])
   end
 end
