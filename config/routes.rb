@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resource :my_page, only: %i[show edit update]
   resources :shops, only: %i[show]
   resources :gourmets, only: %i[show]
-  resources :bookmark_lists, only: %i[index new create show]
+  resources :bookmark_lists, only: %i[index new create show edit update]
   resources :bookmarks, only: %i[create destroy]
 end
