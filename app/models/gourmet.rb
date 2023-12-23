@@ -1,5 +1,5 @@
 class Gourmet < ApplicationRecord
-  has_one_attached :image
+  mount_uploader :image, ImagesUploader
 
   belongs_to :prefecture
   has_many :shop_gourmets, dependent: :destroy
