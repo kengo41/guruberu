@@ -1,0 +1,11 @@
+<%= turbo_frame_tag @bookmark_list do %>
+  <%= form_with model: @bookmark_list do |f| %>
+    <div class="flex justify-between">
+      <%= f.text_field :name, class: 'text-3xl input input-warning border-gray-800' %>
+      <div>
+        <%= f.submit class: 'btn bg-blue-300' %>
+        <%= link_to 'キャンセル', @bookmark_list, class: ' btn bg-gray-300' %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

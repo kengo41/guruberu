@@ -1,7 +1,9 @@
 class MyPagesController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
-  def show; end
+  def show
+    @bookmark_lists = current_user.bookmark_lists
+  end
 
   def edit; end
 

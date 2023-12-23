@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resource :my_page, only: %i[show edit update]
   resources :shops, only: %i[show]
   resources :gourmets, only: %i[show]
+  resources :bookmark_lists
+  resources :bookmarks, only: %i[create destroy]
 end

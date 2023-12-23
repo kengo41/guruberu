@@ -9,11 +9,14 @@
     <%= include_gon %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= turbo_frame_tag 'modal' %>
   </head>
 
   <body class="flex flex-col">
     <%= render 'shared/header' %>
-    <%= render 'shared/flash_message' %>
+    <div id="flash">
+      <%= render 'shared/flash_message' %>
+    </div>
     <div  class="bg-orange-100 text-gray-900 body-font">
       <%= yield %>
     </div>
