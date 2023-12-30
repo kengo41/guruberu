@@ -15,7 +15,7 @@ window.initMap = function() {
   for (var i = 0; i < markerData.length; i++) {
     marker[i] = new google.maps.Marker({
       map: map,
-      position: new google.maps.LatLng({lat: markerData[i]['lat'], lng: markerData[i]['lng']})
+      position: new google.maps.LatLng(markerData[i]['latitude'], markerData[i]['longitude'])
     });
     // 吹き出しの追加
     infoWindow[i] = new google.maps.InfoWindow({
