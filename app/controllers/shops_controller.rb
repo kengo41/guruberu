@@ -6,14 +6,16 @@ class ShopsController < ApplicationController
 
     if params[:address].present?
       location = Geocoder.search(params[:address]).first
-      latitude = location.latitude
-      longitude = location.longitude
+      if location
+        latitude = location.latitude
+        longitude = location.longitude
+      end
     elsif params[:latitude].present? && params[:longitude].present?
       latitude = params[:latitude]
       longitude = params[:longitude]
     end
 
-    if latitude && longitude
+    if within_japan?(latitude, longitude)
       prefecture = fetch_prefecture_by_coordinates(latitude, longitude)
       gourmets = fetch_gourmet_by_prefectures(prefecture)
       @shops = fetch_shop_by_gourmets(gourmets, latitude, longitude)
@@ -28,6 +30,12 @@ class ShopsController < ApplicationController
   end
 
   private
+
+  def within_japan?(latitude, longitude)
+    japan_latitude_range = (20.42..45.55)
+    japan_longitude_range = (122.93..153.98)
+    japan_latitude_range.cover?(latitude.to_f) && japan_longitude_range.cover?(longitude.to_f)
+  end
 
   def set_map_data(latitude, longitude, marker_data)
     gon.latitude = latitude || 35.6812362
