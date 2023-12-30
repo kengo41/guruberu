@@ -8,10 +8,10 @@ class Shop < ApplicationRecord
   validates :longitude, presence: true
   validates :place_id, presence: true
 
-  def self.find_or_create_from_api_data(place_data, keyword)
+  def self.find_or_create_from_api_data(place_data, gourmet)
     shop = find_or_initialize_by(place_id: place_data['place_id'])
 
-    gourmet = Gourmet.find_by(name: keyword)
+    gourmet = Gourmet.find_by(name: gourmet)
     shop.gourmets << gourmet unless shop.gourmets.exists?(gourmet.id)
 
     return shop if shop.persisted?
