@@ -57,11 +57,8 @@ gem 'rails-i18n'
 gem 'devise-i18n'
 
 gem 'dotenv-rails'
-gem 'google_places'
-
 gem 'geocoder'
 gem 'gon'
-gem 'httparty'
 
 gem 'carrierwave'
 
