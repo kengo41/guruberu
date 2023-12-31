@@ -6,14 +6,14 @@
   <button id="getCurrentLocationButton" class="ml-5 flex-shrink-0 bg-white hover:bg-gray-200 border-gray-500 hover:border-gray-700 text-sm border-4 text-gray-700 py-1 px-2 rounded">現在地から検索</button>
   <%= form_with(url: home_path, method: :get, html: { class: 'rounded-lg p-4' }) do |f| %>
     <div class="flex items-center border-b border-b-2 border-orange-500 py-2">
-      <%= f.text_field :address, placeholder: '住所・駅・観光地を入力', class: 'appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none' %>
+      <%= f.text_field :address, placeholder: '住所・駅・観光地を入力', class: 'appearance-none bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none', id: 'autocomplete-input', autocomplete: 'off' %>
       <%= f.submit '検索', class: 'flex-shrink-0 bg-orange-500 hover:bg-orange-700 border-orange-500 hover:border-orange-700 text-sm border-4 text-white py-1 px-2 rounded', id: 'searchButton' %>
     </div>
   <% end %>
 
   <div id="map" class="w-11/12 h-96 rounded-xl"></div>
   <%= javascript_include_tag "google_maps" %>
-  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&callback=initMap" async defer></script>
+  <script defer="defer" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&libraries=places&callback=initMap" ></script>
 
   <div class="card w-11/12 bg-base-100 shadow-md z-0 mt-10 mb-10">
     <div class="flex flex-col justify-center items-center h-full">

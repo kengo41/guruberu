@@ -11,6 +11,10 @@ window.initMap = function() {
     center: new google.maps.LatLng(lat, lng),
   });
 
+  searchBox = new google.maps.places.SearchBox(
+    document.getElementById('autocomplete-input')
+  );
+
   // マーカー毎の処理
   for (var i = 0; i < markerData.length; i++) {
     marker[i] = new google.maps.Marker({
