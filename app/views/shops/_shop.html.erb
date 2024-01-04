@@ -1,4 +1,4 @@
-<div class="bg-base-200 p-4 m-5 rounded-xl shadow-lg">
+<div class="bg-base-200 p-4 m-5 rounded-xl shadow-lg relative">
   <div class="flex items-center" data-controller="modal">
     <%= image_tag shop.image || 'logo.png', class: 'w-48 h-48 object-cover rounded-3xl' %>
     <div class="ml-4">
@@ -15,8 +15,10 @@
         経路案内
       </a>
     </div>
-    <a href="/bookmark_lists" data-turbo-frame="modal" class="ml-auto mr-10 mt-40 m-5 bookmark-icon" data-shop-id="<%= shop.id %>">
+    <% if user_signed_in? %>
+    <a href="/bookmark_lists" data-turbo-frame="modal" class="absolute top-1 right-1 bookmark-icon" data-shop-id="<%= shop.id %>">
       <i class="fa-regular fa-bookmark w-14 h-8" data-modal-target="myModal"></i>
     </a>
+    <% end %>
   </div>
 </div>
