@@ -12,12 +12,12 @@
     <%= turbo_frame_tag 'modal' %>
   </head>
 
-  <body class="flex flex-col">
+  <body class="flex flex-col min-h-screen">
     <%= render 'shared/header' %>
     <div id="flash">
       <%= render 'shared/flash_message' %>
     </div>
-    <div  class="bg-orange-100 text-gray-900 body-font">
+    <div  class="flex-grow bg-orange-100 text-gray-900 body-font">
       <%= yield %>
     </div>
     <%= render 'shared/footer' %>

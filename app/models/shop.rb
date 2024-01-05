@@ -8,6 +8,8 @@ class Shop < ApplicationRecord
   validates :longitude, presence: true
   validates :place_id, presence: true
 
+  enum price_level: { 無料: 0, 安価: 1 , お手頃: 2, 高級: 3, とても高級: 4 }
+
   def self.find_or_create_from_api_data(place_data, gourmet)
     shop = find_or_initialize_by(place_id: place_data['place_id'])
 

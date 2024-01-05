@@ -9,9 +9,10 @@ class MyPagesController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to my_page_path, notice: t('defaults.message.updated')
+      redirect_to my_page_path, success: t('defaults.message.updated')
     else
-      render :edit
+      flash.now[:danger] = t('defaults.message.update_failed')
+      render :edit, status: :unprocessable_entity
     end
   end
 

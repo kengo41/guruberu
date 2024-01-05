@@ -3,6 +3,7 @@ class BookmarkListsController < ApplicationController
 
   def index
     @bookmark_lists = current_user.bookmark_lists
+    @shop = Shop.find(params[:shop_id])
   end
 
   def show; end
@@ -16,7 +17,11 @@ class BookmarkListsController < ApplicationController
   def create
     @bookmark_list = current_user.bookmark_lists.build(list_params)
     if @bookmark_list.save
-      redirect_to bookmark_lists_path
+      flash.now.notice = "リストを作成しました"
+      render turbo_stream: [
+        turbo_stream.replace(@bookmark_list),
+        turbo_stream.update("flash", partial: "shared/flash_message")
+      ]
     else
       render :new
     end

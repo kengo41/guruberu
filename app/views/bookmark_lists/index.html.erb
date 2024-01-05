@@ -7,6 +7,7 @@
       </div>
       <% @bookmark_lists.each do |list| %>
         <div class="flex justify-center mb-5 border-b pb-2 list-button" data-action="click->modal#close" data-list-id="<%= list.id %>">
+        <input type="checkbox" class="mr-2" <%= "checked" if Bookmark.find_by(shop: @shop, bookmark_list: list) %>>
         <button><%= list.name %></button>
         </div>
       <% end %>
