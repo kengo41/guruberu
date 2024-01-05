@@ -1,12 +1,10 @@
 <div class="grid place-items-center">
-  <div class="card w-full md:w-11/12 lg:w-11/12 xl:w-11/12 bg-base-100 shadow-md z-0 rounded-3xl my-20">
+  <div class="card w-full md:w-11/12 lg:w-11/12 xl:w-11/12 my-10">
     <div class="flex flex-col md:flex-row">
       <div class="card-body md:w-2/3 pt-5">
         <h1 class="text-3xl font-bold underline mb-4"><%= @shop.name %></h1>
-        <div class="mb-4">
-          <p class="text-lg"><span class="font-semibold">住所：</span><%= @shop.address %></p>
-          <p class="text-lg"><span class="font-semibold">電話番号：</span><%= @shop.phone_number %></p>
-        </div>
+        <p class="text-lg"><span class="font-semibold">住所：</span><%= @shop.address %></p>
+        <p class="text-lg"><span class="font-semibold">電話番号：</span><%= @shop.phone_number %></p>
         <div class="mb-4">
           <p class="text-lg"><span class="font-semibold">営業時間：</span></p>
           <p class="text-lg">

@@ -1,37 +1,34 @@
 <div class="grid place-items-center mb-20">
-  <h1 class="text-3xl m-10"><%= t('defaults.my_page') %></h1>
-  <div class="card w-4/5 bg-base-100 shadow-md z-0">
-    <div class="card-body border-b border-gray-500 p-10">
-      <div class="flex justify-evenly items-center">
-        <%= image_tag 'logo.png', class: 'w-48 h-48' %>
-        <div class="flex flex-col">
-          <p class="mb-10 text-center"><%= @user.name %></p>
-          <%= link_to t('defaults.profile_edit'), edit_my_page_path, class: 'bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300' %>
-        </div>
+  <h1 class="text-2xl font-semibold m-10"><%= t('defaults.my_page') %></h1>
+  <div class="card w-4/5">
+    <div class="flex justify-evenly items-center">
+      <%= image_tag 'logo.png', class: 'w-48 h-48 rounded-full object-cover' %>
+      <div class="flex flex-col ml-4">
+        <p class="mb-10 text-center text-lg font-semibold"><%= @user.name %></p>
+        <%= link_to t('defaults.profile_edit'), edit_my_page_path, class: 'btn bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300' %>
       </div>
     </div>
     <div class="card-body p-10">
-      <div class="flex flex-col justify-center items-center h-full">
-        <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5">マイリスト</h2>
-        <% @bookmark_lists.each do |list| %>
-          <div class="card w-11/12 bg-base-200 border-gray-500 shadow-md m-2">
-            <div class="flex justify-between p-7">
-              <%= link_to list.name, bookmark_list_path(list), class: 'text-left p-3'%>
-              <%= link_to '削除', bookmark_list_path(list), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'btn bg-red-500 mb-1' %>
+      <div class="flex flex-col">
+        <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5 mb-4">マイリスト</h2>
+        <% if @bookmark_lists.any? %>
+          <% @bookmark_lists.each do |list| %>
+            <div class="card bg-base-200 border-gray-500 shadow-md m-2">
+              <div class="flex justify-between p-4">
+                <%= link_to list.name, bookmark_list_path(list), class: 'text-left text-lg font-semibold p-2'%>
+                <%= link_to '削除', bookmark_list_path(list), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'w-20 h-12 btn bg-red-500 text-white' %>
+              </div>
             </div>
-          </div>
+          <% end %>
+        <% else %>
+          <p class="text-2xl py-5 text-center">リストはありません</p>
         <% end %>
       </div>
     </div>
     <div class="card-body p-10">
-      <div class="flex flex-col justify-center items-center h-full">
-        <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5">レビューしたお店</h2>
-        <div class="card w-11/12 bg-base-200 border-gray-500 shadow-md m-2">
-          <p class="p-7">お店１</p>
-        </div>
-        <div class="card w-11/12 bg-base-200 border-gray-500 shadow-md m-2">
-          <p class="p-7">お店２</p>
-        </div>
+      <div class="flex flex-col">
+        <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5 mb-4">レビューしたお店</h2>
+        <p class="text-2xl py-5 text-center">準備中</p>
       </div>
     </div>
   </div>
