@@ -41,6 +41,7 @@ export default class extends Controller {
       .then(data => {
         if (data.success) {
           this.setFlashMessage("success", `${data.name}へ保存しました`);
+          this.updateBookmarkButton();
         } else {
           this.setFlashMessage("error", `すでに保存しています`);
         }
@@ -84,9 +85,15 @@ export default class extends Controller {
 
     if (flashContainerElement) {
       flashContainerElement.appendChild(flashContainer);
+      flashContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setTimeout(() => {
         flashContainerElement.removeChild(flashContainer);
       }, 5000)
     }
+  }
+
+  updateBookmarkButton() {
+    const bookmarkButton = document.querySelector(`.bookmark-icon[data-shop-id="${shopId}"]`);
+    bookmarkButton.innerHTML = '<i class="fa-solid fa-bookmark w-14 h-8"></i>';
   }
 }

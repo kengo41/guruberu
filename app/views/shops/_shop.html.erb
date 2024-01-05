@@ -16,9 +16,15 @@
       </a>
     </div>
     <% if user_signed_in? %>
-    <a href="/bookmark_lists" data-turbo-frame="modal" class="absolute top-1 right-1 bookmark-icon" data-shop-id="<%= shop.id %>">
-      <i class="fa-regular fa-bookmark w-14 h-8" data-modal-target="myModal"></i>
-    </a>
+      <% if Bookmark.find_by_shop(shop) %>
+        <a href="/bookmark_lists" data-turbo-frame="modal" class="absolute top-1 right-1 bookmark-icon" data-shop-id="<%= shop.id %>">
+          <i class="fa-solid fa-bookmark w-14 h-8" data-modal-target="myModal"></i>
+        </a>
+      <% else %>
+        <a href="/bookmark_lists" data-turbo-frame="modal" class="absolute top-1 right-1 bookmark-icon" data-shop-id="<%= shop.id %>">
+          <i class="fa-regular fa-bookmark w-14 h-8" data-modal-target="myModal"></i>
+        </a>
+      <% end %>
     <% end %>
   </div>
 </div>
