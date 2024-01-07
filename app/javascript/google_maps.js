@@ -37,7 +37,7 @@ window.initMap = function() {
     });
 
     infoWindow[i] = new google.maps.InfoWindow({
-      content: '<div class="sample">' + markerData[i]['name'] + '</div>'
+      content: '<div class="hover:text-yellow-500"><a href="/shops/' +  markerData[i]['id'] + '">' +  markerData[i]['name'] + '</a></div>'
     });
     markerEvent(i);
   }
