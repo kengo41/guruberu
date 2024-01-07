@@ -6,6 +6,6 @@ class CreateShopGourmets < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index :shop_gourmets, [:shop_id, :gourmet_id], unique: :true
+    add_index :shop_gourmets, [:shop_id, :gourmet_id], unique: true
   end
 end
