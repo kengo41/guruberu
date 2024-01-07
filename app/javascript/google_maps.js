@@ -27,6 +27,19 @@ window.initMap = function() {
     });
     markerEvent(i);
   }
+
+  var searchNearbyButton = document.createElement('button');
+  searchNearbyButton.textContent = "このエリアから探す";
+  searchNearbyButton.className = "border-2 rounded-full border-orange-400 bg-orange-400 py-2 px-4 md:px-8 mt-2 mr-2 text-center text-xs md:text-base text-white font-bold hover:bg-orange-600";
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(searchNearbyButton);
+
+  searchNearbyButton.addEventListener("click", function() {
+    showLoadingIndicator();
+    var center = map.getCenter();
+    var lat = center.lat();
+    var lng = center.lng();
+    window.location.href = `/home?latitude=${lat}&longitude=${lng}`;
+  });
 }
 
 // 新しいマーカーをクリックしたとき、前の吹き出しを閉じる
