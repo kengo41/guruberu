@@ -26,7 +26,6 @@ class ShopsController < ApplicationController
 
   def show
     @shop = Shop.find(params[:id])
-    set_map_data(@shop.latitude, @shop.longitude, [@shop])
   end
 
   private
