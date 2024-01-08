@@ -16,7 +16,8 @@ class BookmarksController < ApplicationController
     shop = Shop.find(params[:shop_id])
 
     if bookmark_list.shops.destroy(shop)
-      render json: { success: true, name: bookmark_list.name }
+      other_bookmarks_exist = Bookmark.user_bookmarked_shop?(current_user, shop) ? true : false
+      render json: { success: true, name: bookmark_list.name, other_bookmarks_exist: other_bookmarks_exist }
     else
       render json: { success: false, errors: bookmark_list.errors.full_messages }
     end
