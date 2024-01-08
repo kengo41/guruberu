@@ -4,7 +4,7 @@ class Bookmark < ApplicationRecord
 
   validates :bookmark_list_id, uniqueness: { scope: :shop_id }
 
-  def self.find_by_shop(shop)
-    find_by(shop: shop)
+  def self.user_bookmarked_shop?(user, shop)
+    user.present? && find_by(shop: shop, bookmark_list: user.bookmark_lists)
   end
 end
