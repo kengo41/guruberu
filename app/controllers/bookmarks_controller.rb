@@ -16,10 +16,9 @@ class BookmarksController < ApplicationController
     shop = Shop.find(params[:shop_id])
 
     if bookmark_list.shops.destroy(shop)
-      redirect_to bookmark_list_path(bookmark_list), success: '削除しました'
+      render json: { success: true, name: bookmark_list.name }
     else
-      flash.now[:error] = '削除に失敗しました'
-      render template: 'bookmark_list/show'
+      render json: { success: false, errors: bookmark_list.errors.full_messages }
     end
   end
 end
