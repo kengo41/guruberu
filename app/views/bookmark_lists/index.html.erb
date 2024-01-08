@@ -6,17 +6,10 @@
         <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->modal#closeModal"></i>
       </div>
       <% @bookmark_lists.each do |list| %>
-        <% if Bookmark.find_by(shop: @shop, bookmark_list: list) %>
-          <div class="flex justify-center mb-5 border-b pb-2 list-button" data-action="click->modal#closeUnbookmark" data-list-id="<%= list.id %>">
-          <input type="checkbox" class="mr-2" checked>
+        <div class="flex justify-center mb-5 border-b pb-2 list-button" data-action="click->modal#<%= Bookmark.bookmark_list_present?(@shop, list) ? 'closeUnbookmark' : 'closeBookmark' %>" data-list-id="<%= list.id %>">
+          <input type="checkbox" class="mr-2" <%= 'checked' if Bookmark.bookmark_list_present?(@shop, list) %>>
           <button><%= list.name %></button>
-          </div>
-        <% else %>
-          <div class="flex justify-center mb-5 border-b pb-2 list-button" data-action="click->modal#closeBookmark" data-list-id="<%= list.id %>">
-          <input type="checkbox" class="mr-2">
-          <button><%= list.name %></button>
-          </div>
-        <% end %>
+        </div>
       <% end %>
       <div class="flex justify-center border-b pb-2">
         <i class="fa-solid fa-plus mt-1 mr-2"></i>
