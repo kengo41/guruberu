@@ -5,6 +5,7 @@ class User < ApplicationRecord
   after_create :create_initial_list
 
   has_many :bookmark_lists, dependent: :destroy
+  has_many :reviews, dependent: :destroy
 
   validates :name, presence: true, length: { maximum: 255 }
 
