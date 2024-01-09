@@ -71,6 +71,8 @@ window.initMap = function() {
         },
         function(error) {
           console.error("位置情報の取得に失敗しました: " + error.message);
+          alert('お使いのブラウザでは位置情報がサポートされていません')
+          window.location.href = `/home`
         }
       );
     } else {

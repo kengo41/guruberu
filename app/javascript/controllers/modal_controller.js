@@ -17,7 +17,7 @@ export default class extends Controller {
     this.myModalTarget.classList.remove('hidden');
   }
 
-  close(event) {
+  closeBookmark(event) {
     const clickedList = event.currentTarget;
     const listId = clickedList.getAttribute("data-list-id");
 
@@ -41,9 +41,47 @@ export default class extends Controller {
       .then(data => {
         if (data.success) {
           this.setFlashMessage("success", `${data.name}へ保存しました`);
-          this.updateBookmarkButton();
+          this.updateBookmarkButton(true);
         } else {
           this.setFlashMessage("error", `すでに保存しています`);
+        }
+      })
+      .catch(error => {
+        console.error("リクエストエラー", error);
+        this.setFlashMessage("error", "リクエストエラーが発生しました");
+      });
+    }
+    this.backGroundTarget.classList.add("hidden");
+  }
+
+  closeUnbookmark(event) {
+    const clickedList = event.currentTarget;
+    const listId = clickedList.getAttribute("data-list-id");
+
+    if (shopId && listId) {
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+      fetch(`/bookmarks/${listId}?shop_id=${shopId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': csrfToken,
+        },
+      })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('サーバーエラー');
+        }
+      })
+      .then(data => {
+        if (data.success) {
+          this.setFlashMessage("success", `${data.name}から削除しました`);
+          const otherBookmarksExist = data.other_bookmarks_exist;
+          this.updateBookmarkButton(otherBookmarksExist);
+        } else {
+          this.setFlashMessage("error", `すでに削除されています`);
         }
       })
       .catch(error => {
@@ -92,8 +130,8 @@ export default class extends Controller {
     }
   }
 
-  updateBookmarkButton() {
+  updateBookmarkButton(bookmarked) {
     const bookmarkButton = document.querySelector(`.bookmark-icon[data-shop-id="${shopId}"]`);
-    bookmarkButton.innerHTML = '<i class="fas fa-bookmark w-7 h-7 text-yellow-500"></i>';
+    bookmarkButton.innerHTML = bookmarked ? '<i class="fas fa-bookmark w-7 h-7 text-yellow-500"></i>' : '<i class="fas fa-bookmark w-7 h-7 text-gray-300"></i>';
   }
 }
