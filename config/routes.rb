@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   devise_for :users
   resource :my_page, only: %i[show edit update]
   resources :shops, only: %i[show] do
-    resources :reviews, only: %i[new create], shallow: true
+    resources :reviews, only: %i[new create edit update destroy], shallow: true
   end
   resources :gourmets, only: %i[show]
   resources :bookmark_lists
