@@ -2,11 +2,13 @@ class BookmarkListsController < ApplicationController
   before_action :set_list, only: %i[show edit update destroy]
 
   def index
-    @bookmark_lists = current_user.bookmark_lists
+    @bookmark_lists = current_user.bookmark_lists.order(created_at: :desc)
     @shop = Shop.find(params[:shop_id])
   end
 
-  def show; end
+  def show
+    @shops = @bookmark_list.shops.order(created_at: :desc)
+  end
 
   def new
     @bookmark_list = current_user.bookmark_lists.build
@@ -19,7 +21,6 @@ class BookmarkListsController < ApplicationController
     if @bookmark_list.save
       flash.now.notice = "リストを作成しました"
       render turbo_stream: [
-        turbo_stream.replace(@bookmark_list),
         turbo_stream.update("flash", partial: "shared/flash_message")
       ]
     else

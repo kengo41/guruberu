@@ -4,8 +4,8 @@
       <%= render "bookmark_list", bookmark_list: @bookmark_list %>
     </div>
 
-    <% if @bookmark_list.shops.any? %>
-      <% @bookmark_list.shops.each do |shop| %>
+    <% if @shops.any? %>
+      <% @shops.each do |shop| %>
         <div class="bg-base-200 p-4 m-5 rounded-xl shadow-lg relative">
           <div class="flex flex-col md:flex-row items-center" data-controller="modal">
             <%= image_tag shop.image || 'logo.png', class: 'w-full md:w-48 h-48 object-cover rounded-3xl shadow-md mb-4 md:mb-0' %>
