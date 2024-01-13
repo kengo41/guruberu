@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   get 'gourmets', to: 'gourmets#index'
   devise_for :users
   resource :my_page, only: %i[show edit update]
-  resources :shops, only: %i[show]
+  resources :shops, only: %i[show] do
+    resources :reviews, only: %i[new create], shallow: true
+  end
   resources :gourmets, only: %i[show]
   resources :bookmark_lists
   resources :bookmarks, only: %i[create destroy]

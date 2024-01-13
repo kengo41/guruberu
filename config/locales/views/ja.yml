@@ -6,7 +6,10 @@ ja:
     search_shop: お店検索
     search_gourmet: グルメ検索
     my_page: マイページ
-    profile_edit: プロフール編集
+    profile_edit: プロフィール編集
     message:
       updated: 更新しました
       update_failed: 更新に失敗しました
+  time:
+    formats:
+      simple: "%Y/%m/%d %H:%M"

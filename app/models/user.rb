@@ -9,9 +9,11 @@ class User < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }
 
-  private
-
   def create_initial_list
     bookmark_lists.create(name: 'お気に入り')
+  end
+
+  def own?(object)
+    id == object.user_id
   end
 end

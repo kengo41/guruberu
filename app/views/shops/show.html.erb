@@ -27,16 +27,18 @@
     </div>
 
     <div class="card-body border-t border-gray-500 p-6">
-      <div class="flex flex-col items-center">
-        <div class="card w-full bg-base-200 shadow-xl mb-6">
-          <p class="text-2xl font-bold pl-6 pt-6">レビュー</p>
-          <div class="flex justify-center items-center h-32">
-            <p class="text-lg text-center">準備中</p>
+      <p class="text-2xl font-bold border-b border-gray-500 w-11/12 p-5">レビュー</p>
+      <div id="reviews">
+        <%= turbo_frame_tag 'review_modal' do %>
+          <%= render @reviews %>
+        <% end %>
+      </div>
+      <div id="newReviewButton">
+        <% if user_signed_in? && !@reviews.exists?(user_id: current_user.id) %>
+          <div class="flex justify-end mx-10 mt-5 mb-5">
+            <%= link_to 'レビューを書く', new_shop_review_path(@shop), class: 'btn btn-sm md:btn-md btn-neutral', data: { turbo_frame: 'review_modal' } %>
           </div>
-          <div class="flex justify-end px-6 mt-4 mb-5">
-            <%= link_to 'レビューを書く', '#', class: 'btn btn-neutral w-full md:w-48 h-10 ' %>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -46,7 +48,7 @@
 function initMap() {
   var shopLocation = {lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 15,
+    zoom: 18,
     center: shopLocation
   });
   var marker = new google.maps.Marker({
