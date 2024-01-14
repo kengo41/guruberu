@@ -1,4 +1,4 @@
-<div class="grid place-items-center mt-5">
+<div class="grid place-items-center mt-10">
   <div id="loadingIndicator" class="hidden mb-5">
     <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-orange-500 border-4 border-b-0"></div>
     <div class="text-orange-500 text-xs mt-2">検索中...</div>
@@ -11,21 +11,19 @@
     </div>
   <% end %>
 
-  <div id="map" class="w-11/12 h-96 rounded-xl mt-5"></div>
+  <div id="map" class="w-11/12 h-96 rounded-xl mt-10"></div>
   <%= javascript_include_tag "google_maps" %>
   <script defer="defer" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&libraries=places&callback=initMap" ></script>
 
-  <div class="card w-11/12 z-0 mt-10 mb-10">
-    <div class="flex flex-col justify-center items-center h-full">
-      <h2 class="text-left text-3xl border-b border-gray-500 w-11/12 p-5">お店</h2>
-        <div class="w-11/12">
-          <% if @shops.any? %>
+  <% if @shops.any? %>
+    <div class="card w-11/12 z-0 mt-10 mb-10">
+      <div class="flex flex-col justify-center items-center h-full">
+        <h2 class="text-left text-3xl border-b border-gray-500 w-11/12 p-5">お店</h2>
+          <div class="w-11/12">
             <%= render @shops %>
-          <% else %>
-            <p class="text-2xl py-5 text-center">お店が見つかりません</p>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
 </div>

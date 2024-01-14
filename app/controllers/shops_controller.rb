@@ -9,16 +9,14 @@ class ShopsController < ApplicationController
       if location
         latitude = location.latitude
         longitude = location.longitude
+        set_shops(latitude, longitude)
+      else
+        flash.now[:danger] = "入力が正しくありません"
       end
     elsif params[:latitude].present? && params[:longitude].present?
       latitude = params[:latitude]
       longitude = params[:longitude]
-    end
-
-    if within_japan?(latitude, longitude)
-      prefecture = fetch_prefecture_by_coordinates(latitude, longitude)
-      gourmets = fetch_gourmet_by_prefectures(prefecture)
-      @shops = fetch_shop_by_gourmets(gourmets, latitude, longitude)
+      set_shops(latitude, longitude)
     end
 
     set_map_data(latitude, longitude, @shops)
@@ -31,10 +29,12 @@ class ShopsController < ApplicationController
 
   private
 
-  def within_japan?(latitude, longitude)
-    japan_latitude_range = (20.42..45.55)
-    japan_longitude_range = (122.93..153.98)
-    japan_latitude_range.cover?(latitude.to_f) && japan_longitude_range.cover?(longitude.to_f)
+  def set_shops(latitude, longitude)
+    prefecture = fetch_prefecture_by_coordinates(latitude, longitude)
+    flash.now[:danger] = "お店が見つかりません" unless prefecture.present?
+    gourmets = fetch_gourmet_by_prefectures(prefecture)
+    @shops = fetch_shop_by_gourmets(gourmets, latitude, longitude) if gourmets
+    flash.now[:danger] = "お店が見つかりません" unless @shops.present?
   end
 
   def set_map_data(latitude, longitude, marker_data)
@@ -60,7 +60,7 @@ class ShopsController < ApplicationController
 
   def fetch_gourmet_by_prefectures(prefecture)
     prefecture = Prefecture.find_by(name: prefecture)
-    prefecture.gourmets.pluck(:name)
+    prefecture.gourmets.pluck(:name) if prefecture
   end
 
   def fetch_shop_by_gourmets(gourmets, latitude, longitude)
