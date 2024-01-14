@@ -24,7 +24,7 @@ export default class extends Controller {
     if (shopId && listId) {
       const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-      fetch(`/bookmarks?shop_id=${shopId}&list_id=${listId}`, {
+      fetch(`/shops/${shopId}/bookmarks?list_id=${listId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,8 +42,6 @@ export default class extends Controller {
         if (data.success) {
           this.setFlashMessage("success", `${data.name}へ保存しました`);
           this.updateBookmarkButton(true);
-        } else {
-          this.setFlashMessage("error", `すでに保存しています`);
         }
       })
       .catch(error => {
@@ -61,7 +59,7 @@ export default class extends Controller {
     if (shopId && listId) {
       const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-      fetch(`/bookmarks/${listId}?shop_id=${shopId}`, {
+      fetch(`/shops/${shopId}/bookmarks/${listId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -80,8 +78,6 @@ export default class extends Controller {
           this.setFlashMessage("success", `${data.name}から削除しました`);
           const otherBookmarksExist = data.other_bookmarks_exist;
           this.updateBookmarkButton(otherBookmarksExist);
-        } else {
-          this.setFlashMessage("error", `すでに削除されています`);
         }
       })
       .catch(error => {
