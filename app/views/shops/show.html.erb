@@ -46,7 +46,7 @@
 function initMap() {
   var shopLocation = {lat: <%= @shop.latitude %>, lng: <%= @shop.longitude %>};
   var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 18,
+    zoom: 17,
     center: shopLocation
   });
   var marker = new google.maps.Marker({

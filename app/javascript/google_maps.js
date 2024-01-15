@@ -7,7 +7,7 @@ var currentInfoWindow = null;
 
 window.initMap = function() {
   map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 15,
+    zoom: 14,
     center: new google.maps.LatLng(lat, lng),
     fullscreenControl: false,
     mapTypeControl: false,
