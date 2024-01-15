@@ -1,6 +1,6 @@
 <%= turbo_frame_tag "modal" do %>
-  <div id="myModal" class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="modal" data-modal-target="backGround" data-action="click->modal#closeBackground">
-    <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-[450px]" data-modal-target="myModal">
+  <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="modal" data-modal-target="backGround" data-action="click->modal#closeBackground">
+    <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-[450px]">
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-base md:text-lg font-semibold">新しいリスト</h2>
         <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->modal#closeModal"></i>

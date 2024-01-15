@@ -29,9 +29,7 @@
     <div class="card-body border-t border-gray-500 p-6">
       <p class="text-2xl font-bold border-b border-gray-500 w-11/12 p-5">レビュー</p>
       <div id="reviews">
-        <%= turbo_frame_tag 'review_modal' do %>
-          <%= render @reviews %>
-        <% end %>
+        <%= render @reviews %>
       </div>
       <div id="newReviewButton">
         <% if user_signed_in? && !@reviews.exists?(user_id: current_user.id) %>
