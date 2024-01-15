@@ -1,5 +1,10 @@
 ja:
   activerecord:
+    models:
+      user: ユーザー
+      shop: お店
+      gourmet: グルメ
+      bookmark_list: ブックマークリスト
     attributes:
       user:
         confirmation_sent_at: パスワード確認送信時刻
@@ -26,5 +31,6 @@ ja:
         unlock_token: ロック解除用トークン
         updated_at: 更新日
         name: ニックネーム
-    models:
-      user: ユーザー
+      review:
+        rating: 評価
+        content: コメント

@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 shopId = null;
 
 export default class extends Controller {
-  static targets = ["myModal", "backGround"]
+  static targets = ["backGround"]
 
   connect() {
     const bookmarkButtons = document.getElementsByClassName("bookmark-icon");
@@ -11,10 +11,6 @@ export default class extends Controller {
     for (const bookmarkButton of bookmarkButtons) {
       bookmarkButton.addEventListener("click", this.buttonClick);
     }
-  }
-
-  open() {
-    this.myModalTarget.classList.remove('hidden');
   }
 
   closeBookmark(event) {

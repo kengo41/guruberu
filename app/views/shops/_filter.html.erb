@@ -1,0 +1,38 @@
+<%= form_with url: home_path, method: :get do |f| %>
+  <%= f.hidden_field :latitude, value: @latitude %>
+  <%= f.hidden_field :longitude, value: @longitude %>
+
+  <div class="flex justify-between items-start mb-6 bg-base-200 p-4 m-5 rounded-xl shadow-lg">
+    <div class="flex flex-col mr-8">
+      <div class="text-lg font-bold mb-2">評価で絞る</div>
+      <div class="flex items-center mb-5">
+        <%= f.check_box :rating, { checked: false }, 4.0 %>
+        <%= f.label :rating, '4.0点以上', class: 'ml-2' %>
+      </div>
+      <div class="flex items-center">
+        <%= f.check_box :total_ratings, { checked: false }, 100 %>
+        <%= f.label :total_ratings, '100件以上', class: 'ml-2' %>
+      </div>
+    </div>
+
+    <div class="flex flex-col mr-8">
+      <div class="text-lg font-bold mb-2">価格帯で絞る</div>
+      <div class="flex items-center mb-5">
+        <%= f.select :price_level, Shop.price_levels.keys.map { |key| [key] }, selected: params[:price_level], prompt: '選択しない', class: 'select select-bordered' %>
+      </div>
+    </div>
+
+    <div class="flex flex-col">
+      <div class="text-lg font-bold mb-2">グルメで絞る</div>
+      <div class="flex items-center mb-5">
+        <% if @gourmets.present? %>
+          <%= f.select :gourmet, @gourmets, selected: params[:gourmet], prompt: '選択しない', class: 'select select-bordered' %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="ml-auto">
+      <%= f.submit '絞り込み', class: 'bg-blue-500 text-white p-2 rounded-md ml-2 hover:bg-blue-700 hover:opacity-75 mt-5 ml-5' %>
+    </div>
+  </div>
+<% end %>

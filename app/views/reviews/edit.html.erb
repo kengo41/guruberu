@@ -1,6 +1,6 @@
 <%= turbo_frame_tag 'review_modal' do %>
   <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="review-modal" data-review-modal-target="backGround" data-action="click->review-modal#closeBackground">
-    <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-18 md: w-[450px]" data-review-modal-target="reviewModal">
+    <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-[450px]">
       <div class="flex justify-end items-center">
         <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->review-modal#closeModal"></i>
       </div>

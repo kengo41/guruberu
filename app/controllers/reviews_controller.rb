@@ -39,8 +39,7 @@ class ReviewsController < ApplicationController
     flash.now.notice = "レビューを削除しました"
     render turbo_stream: [
       turbo_stream.remove(@review),
-      turbo_stream.update("flash", partial: "shared/flash_message"),
-      turbo_stream.prepend("newReviewButton")
+      turbo_stream.update("flash", partial: "shared/flash_message")
     ]
   end
 
