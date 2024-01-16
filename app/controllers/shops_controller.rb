@@ -27,6 +27,10 @@ class ShopsController < ApplicationController
     @reviews = @shop.reviews.includes(:user).order(created_at: :desc)
   end
 
+  def bookmarks_ranking
+    @shops = Shop.joins(:bookmarks).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
+  end
+
   private
 
   def set_shops(latitude, longitude)

@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :shops, only: %i[show] do
     resources :bookmarks, only: %i[create destroy]
     resources :reviews, only: %i[new create edit update destroy], shallow: true
+    collection do
+      get :bookmarks_ranking
+    end
   end
   resources :gourmets, only: %i[show]
   resources :bookmark_lists
