@@ -124,6 +124,6 @@ export default class extends Controller {
 
   updateBookmarkButton(bookmarked) {
     const bookmarkButton = document.querySelector(`.bookmark-icon[data-shop-id="${shopId}"]`);
-    bookmarkButton.innerHTML = bookmarked ? '<i class="fas fa-bookmark w-7 h-7 text-yellow-500"></i>' : '<i class="fas fa-bookmark w-7 h-7 text-gray-300"></i>';
+    bookmarkButton.innerHTML = bookmarked ? '<i class="fas fa-bookmark w-8 h-8 text-yellow-500"></i>' : '<i class="fas fa-bookmark w-8 h-8 text-gray-300"></i>';
   }
 }
