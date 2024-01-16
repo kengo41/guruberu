@@ -15,14 +15,8 @@
         経路案内
       </a>
     </div>
-    <% if user_signed_in? %>
-      <a href="/bookmark_lists?shop_id=<%= shop.id %>" data-turbo-frame="modal" class="absolute top-1 right-1 bookmark-icon" data-shop-id="<%= shop.id %>">
-        <% if Bookmark.user_bookmarked_shop?(current_user, shop) %>
-          <i class="fas fa-bookmark w-8 h-8 text-yellow-500"></i>
-        <% else %>
-          <i class="fas fa-bookmark w-8 h-8 text-gray-300"></i>
-        <% end %>
-      </a>
-    <% end %>
+    <div class="absolute top-1 right-1 ">
+      <%= render 'bookmark_icon', shop: shop %>
+    </div>
   </div>
 </div>
