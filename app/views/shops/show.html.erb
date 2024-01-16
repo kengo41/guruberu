@@ -24,9 +24,9 @@
         <p class="text-lg"><span class="font-semibold">評価：</span><%= @shop.rating %>(<%= @shop.total_ratings %>)</p>
         <p class="text-lg"><span class="font-semibold">価格帯：</span><%= @shop.price_level %></p>
         <div class="text-center">
-          <%= link_to 'https://line.me/R/share?text=https://local-gourmet-485817d8c02c.herokuapp.com/shops/#{@shop.id}', target: '_blank', rel: 'noopener noreferrer', class: 'inline-flex items-center border border-green-500 p-2 rounded-full bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out' do %>
-            <%= image_tag('line_icon.png', width: 25, height: 25, class: 'mr-2') %>
-            <div class='font-bold text-white'>ラインで共有</div>
+          <%= link_to "https://line.me/R/share?text=#{CGI.escape("https://local-gourmet-485817d8c02c.herokuapp.com/shops/#{@shop.id}")}", target: "_blank", rel: "noopener noreferrer", class: "inline-flex items-center border border-green-500 p-2 rounded-full bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out" do %>
+            <%= image_tag("line_icon.png", width: 25, height: 25, class: "mr-2") %>
+            <div class="font-bold text-white">ラインで共有</div>
           <% end %>
         </div>
       </div>
