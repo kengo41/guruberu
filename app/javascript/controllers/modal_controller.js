@@ -38,6 +38,7 @@ export default class extends Controller {
         if (data.success) {
           this.setFlashMessage("success", `${data.name}へ保存しました`);
           this.updateBookmarkButton(true);
+          this.updateBookmarkCount(true);
         }
       })
       .catch(error => {
@@ -74,6 +75,7 @@ export default class extends Controller {
           this.setFlashMessage("success", `${data.name}から削除しました`);
           const otherBookmarksExist = data.other_bookmarks_exist;
           this.updateBookmarkButton(otherBookmarksExist);
+          this.updateBookmarkCount(false);
         }
       })
       .catch(error => {
@@ -115,7 +117,6 @@ export default class extends Controller {
 
     if (flashContainerElement) {
       flashContainerElement.appendChild(flashContainer);
-      flashContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setTimeout(() => {
         flashContainerElement.removeChild(flashContainer);
       }, 5000)
@@ -125,5 +126,13 @@ export default class extends Controller {
   updateBookmarkButton(bookmarked) {
     const bookmarkButton = document.querySelector(`.bookmark-icon[data-shop-id="${shopId}"]`);
     bookmarkButton.innerHTML = bookmarked ? '<i class="fas fa-bookmark w-8 h-8 text-yellow-500"></i>' : '<i class="fas fa-bookmark w-8 h-8 text-gray-300"></i>';
+  }
+
+  updateBookmarkCount(count) {
+    const bookmarkCountElement = document.getElementById("bookmarkCount");
+    if (bookmarkCountElement) {
+      const currentBookmarkCount = parseInt(bookmarkCountElement.textContent, 10);
+      bookmarkCountElement.textContent = count ? currentBookmarkCount + 1 : currentBookmarkCount - 1;
+    }
   }
 }

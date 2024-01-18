@@ -12,17 +12,11 @@
       <p class="text-sm md:text-base text-gray-600 mb-2"><%= shop.phone_number %></p>
       <a href="https://www.google.com/maps/dir/?api=1&destination=<%= shop.name %>&destination_place_id=<%= shop.place_id %>" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:border-b hover:border-yellow-500 hover:text-yellow-500">
         <i class="fas fa-route mr-2"></i>
-        経路案内
+        <%= t('defaults.route') %>
       </a>
     </div>
-    <% if user_signed_in? %>
-      <a href="/bookmark_lists?shop_id=<%= shop.id %>" data-turbo-frame="modal" class="absolute top-1 right-1 bookmark-icon" data-shop-id="<%= shop.id %>">
-        <% if Bookmark.user_bookmarked_shop?(current_user, shop) %>
-          <i class="fas fa-bookmark w-8 h-8 text-yellow-500"></i>
-        <% else %>
-          <i class="fas fa-bookmark w-8 h-8 text-gray-300"></i>
-        <% end %>
-      </a>
-    <% end %>
+    <div class="absolute top-1 right-1 ">
+      <%= render 'bookmark_icon', shop: shop %>
+    </div>
   </div>
 </div>

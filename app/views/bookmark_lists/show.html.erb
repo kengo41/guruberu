@@ -1,5 +1,9 @@
-<div class="grid place-items-center mt-5">
+<div class="grid place-items-center mb-10">
   <div class="card w-4/5">
+    <div class="grid place-items-center">
+      <h1 class="text-2xl mt-10 underline"><%= t('.title') %></h1>
+    </div>
+
     <div class="card-body border-b border-gray-500">
       <%= render "bookmark_list", bookmark_list: @bookmark_list %>
     </div>
@@ -20,23 +24,17 @@
               <p class="text-sm md:text-base text-gray-600 mb-2"><%= shop.phone_number %></p>
               <a href="https://www.google.com/maps/dir/?api=1&destination=<%= shop.name %>&destination_place_id=<%= shop.place_id %>" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:border-b hover:border-yellow-500 hover:text-yellow-500">
                 <i class="fas fa-route mr-2"></i>
-                経路案内
+                <%= t('defaults.route') %>
               </a>
             </div>
-            <% if user_signed_in? %>
-              <a href="/bookmark_lists?shop_id=<%= shop.id %>" data-turbo-frame="modal" class="absolute top-1 right-1 bookmark-icon" data-shop-id="<%= shop.id %>">
-                <% if Bookmark.user_bookmarked_shop?(current_user, shop) %>
-                  <i class="fas fa-bookmark w-8 h-8 text-yellow-500"></i>
-                <% else %>
-                  <i class="fas fa-bookmark w-8 h-8 text-gray-300"></i>
-                <% end %>
-              </a>
-            <% end %>
+            <div class="absolute top-1 right-1 ">
+              <%= render 'shops/bookmark_icon', shop: shop %>
+            </div>
           </div>
         </div>
       <% end %>
     <% else %>
-      <p class="text-2xl py-5 text-center">追加したお店はありません</p>
+      <p class="text-2xl py-5 text-center"><%= t('.not_found') %></p>
     <% end %>
   </div>
 </div>

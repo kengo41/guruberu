@@ -1,33 +1,33 @@
 <div class="grid place-items-center mb-20">
-  <h1 class="text-2xl font-semibold m-10"><%= t('defaults.my_page') %></h1>
+  <h1 class="text-2xl m-10 underline"><%= t('defaults.my_page') %></h1>
   <div class="card w-4/5">
     <div class="flex justify-evenly items-center">
       <%= image_tag 'logo.png', class: 'w-48 h-48 rounded-full object-cover' %>
       <div class="flex flex-col ml-4">
         <p class="mb-10 text-center text-lg font-semibold"><%= @user.name %></p>
-        <%= link_to t('defaults.profile_edit'), edit_my_page_path, class: 'btn bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300' %>
+        <%= link_to t('.edit'), edit_my_page_path, class: 'btn bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300' %>
       </div>
     </div>
     <div class="card-body p-10">
       <div class="flex flex-col">
-        <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5 mb-4">マイリスト</h2>
+        <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5 mb-4"><%= t('defaults.bookmark_list') %></h2>
         <% if @bookmark_lists.any? %>
           <% @bookmark_lists.each do |list| %>
             <div class="card bg-base-200 border-gray-500 shadow-md m-2">
               <div class="flex justify-between p-4">
                 <%= link_to list.name, bookmark_list_path(list), class: 'text-left text-lg p-2 hover:text-yellow-500'%>
-                <%= link_to '削除', bookmark_list_path(list), data: { turbo_method: :delete, turbo_confirm: '本当に削除しますか？' }, class: 'w-20 h-12 btn bg-red-500 hover:bg-red-600 text-white' %>
+                <%= link_to t('.delete'), bookmark_list_path(list), data: { turbo_method: :delete, turbo_confirm: t('defaults.message.delete_confirm') }, class: 'w-20 h-12 btn bg-red-500 hover:bg-red-600 text-white' %>
               </div>
             </div>
           <% end %>
         <% else %>
-          <p class="text-2xl py-5 text-center">リストはありません</p>
+          <p class="text-2xl py-5 text-center"><%= t('.not_found_list') %></p>
         <% end %>
       </div>
     </div>
     <div class="card-body p-10">
       <div class="flex flex-col">
-        <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5 mb-4">レビューしたお店</h2>
+        <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5 mb-4"><%= t('.review_shop') %></h2>
         <% if @reviews.any? %>
           <% @reviews.each do |review| %>
             <div class="card bg-base-200 border-gray-500 shadow-md m-2">
@@ -49,7 +49,7 @@
             </div>
           <% end %>
         <% else %>
-          <p class="text-2xl py-5 text-center">レビューがありません</p>
+          <p class="text-2xl py-5 text-center"><%= t('.not_found_review') %></p>
         <% end %>
       </div>
     </div>

@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
   def create
     @review = current_user.reviews.build(review_params)
     if @review.save
-      flash.now.notice = "レビューを投稿しました"
+      flash.now.notice = t('defaults.message.created_review')
       render turbo_stream: [
         turbo_stream.prepend("reviews", @review),
         turbo_stream.update("flash", partial: "shared/flash_message"),
@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params.except(:shop_id))
-      flash.now.notice = "レビューを更新しました"
+      flash.now.notice = t('defaults.message.updated_review')
       render turbo_stream: [
         turbo_stream.replace(@review),
         turbo_stream.update("flash", partial: "shared/flash_message")
@@ -36,7 +36,7 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy!
-    flash.now.notice = "レビューを削除しました"
+    flash.now.notice = t('defaults.message.deleted_review')
     render turbo_stream: [
       turbo_stream.remove(@review),
       turbo_stream.update("flash", partial: "shared/flash_message")

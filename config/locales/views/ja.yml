@@ -1,15 +1,87 @@
 ja:
   defaults:
-    sign_up:  アカウント登録
     sign_in: ログイン
     sign_out: ログアウト
     search_shop: お店検索
-    search_gourmet: グルメ検索
+    search_gourmet: グルメ一覧
     my_page: マイページ
-    profile_edit: プロフィール編集
+    bookmark_list: マイリスト
+    bookmark_ranking: 保存数ランキング
+    terms: 利用規約
+    privacy_policy: プライバシーポリシー
     message:
-      updated: 更新しました
-      update_failed: 更新に失敗しました
+      updated: プロフィールを更新しました
+      update_failed: プロフィールの更新に失敗しました
+      delete_confirm: 本当に削除しますか？
+      input_failed: 入力が正しくありません
+      not_found: お店が見つかりません
+      created_review: レビューを投稿しました
+      updated_review: レビューを更新しました
+      deleted_review: レビューを削除しました
+      created_list: リストを作成しました
+      updated_list: リストを更新しました
+      deleted_list: リストを削除しました
+    edit: 編集
+    route: 経路案内
+    not_select: 選択しない
+    moderate: お手頃
+    expensive: 高級
+    refine_search: 絞り込み
+    rating_filter: 評価で絞る
+    price_level_filter: 価格帯で絞る
+    gourmet_filter: グルメで絞る
+    more_than_four: 4.0以上
+    more_than_one_hundred: 100件以上
   time:
     formats:
       simple: "%Y/%m/%d %H:%M"
+  shops:
+    home:
+      searching: 検索中...
+      placeholder: 住所・駅・観光地を入力
+      search: 検索
+      shop: お店
+    show:
+      address: 住所
+      phone_number: 電話番号
+      opening_hours: 営業時間
+      website: 公式サイト
+      rating: 評価
+      price_level: 価格帯
+      review: レビュー
+      create_review: レビューを書く
+      share_line: ラインで共有
+  my_pages:
+    show:
+      not_found_list: リストはありません
+      not_found_review: レビューはありません
+      review_shop: レビューしたお店
+      edit: プロフィール編集
+      delete: 削除
+    edit:
+      title: プロフィール編集
+  bookmark_lists:
+    show:
+      title: リスト詳細
+      not_found: 追加したお店はありません
+    index:
+      title: リストへ保存
+      create: リストを作成
+    new:
+      title: 新しいリスト
+      create: 作成
+    edit:
+      cancel: キャンセル
+  gourmets:
+    index:
+      title: 全国ご当地グルメ一覧
+      all_select: 全て
+      refine_search: 絞り込み
+    show:
+      recommend_shop: おすすめのお店
+      gourmet_list: グルメ一覧
+  reviews:
+    new:
+      create: 投稿する
+    edit:
+      cancel: キャンセル
