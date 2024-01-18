@@ -6,27 +6,27 @@
           <h1 class="text-3xl font-bold underline mb-4"><%= @shop.name %></h1>
           <%= render 'bookmark_icon', shop: @shop %>
         </div>
-        <p class="text-lg"><span class="font-semibold">住所：</span><%= @shop.address %></p>
-        <p class="text-lg"><span class="font-semibold">電話番号：</span><%= @shop.phone_number %></p>
+        <p class="text-lg"><span class="font-semibold"><%= t('.address') %>：</span><%= @shop.address %></p>
+        <p class="text-lg"><span class="font-semibold"><%= t('.phone_number') %>：</span><%= @shop.phone_number %></p>
         <div class="mb-4">
-          <p class="text-lg"><span class="font-semibold">営業時間：</span></p>
+          <p class="text-lg"><span class="font-semibold"><%= t('.opening_hours') %>：</span></p>
           <p class="text-lg">
             <% if @shop.opening_hours && @shop.opening_hours != "N/A" %>
               <%= simple_format(@shop.opening_hours.gsub(",", "<br>")) %>
             <% end %>
           </p>
         </div>
-        <p class="text-lg"><span class="font-semibold">ホームページ：
+        <p class="text-lg"><span class="font-semibold"><%= t('.website') %>：
           <span class="text-blue-500 hover:border-b hover:border-yellow-500 hover:text-yellow-500">
             <%= link_to(@shop.website.chomp('/'), @shop.website.chomp('/'), target: :_brank) if @shop.website.present? %>
           </span>
         </p>
-        <p class="text-lg"><span class="font-semibold">評価：</span><%= @shop.rating %>(<%= @shop.total_ratings %>)</p>
-        <p class="text-lg"><span class="font-semibold">価格帯：</span><%= @shop.price_level %></p>
+        <p class="text-lg"><span class="font-semibold"><%= t('.rating') %>：</span><%= @shop.rating %>(<%= @shop.total_ratings %>)</p>
+        <p class="text-lg"><span class="font-semibold"><%= t('.price_level') %>：</span><%= @shop.price_level %></p>
         <div class="text-center">
           <%= link_to "https://line.me/R/share?text=#{CGI.escape("https://local-gourmet-485817d8c02c.herokuapp.com/shops/#{@shop.id}")}", target: "_blank", rel: "noopener noreferrer", class: "inline-flex items-center border border-green-500 p-2 rounded-full bg-green-500 hover:bg-green-600 transition duration-300 ease-in-out" do %>
             <%= image_tag("line_icon.png", width: 25, height: 25, class: "mr-2") %>
-            <div class="font-bold text-white">ラインで共有</div>
+            <div class="font-bold text-white"><%= t('.share_line') %></div>
           <% end %>
         </div>
       </div>
@@ -36,14 +36,14 @@
     </div>
 
     <div class="card-body border-t border-gray-500 p-6">
-      <p class="text-2xl font-bold border-b border-gray-500 w-11/12 p-5">レビュー</p>
+      <p class="text-2xl font-bold border-b border-gray-500 w-11/12 p-5"><%= t('.review') %></p>
       <div id="reviews">
         <%= render @reviews %>
       </div>
       <div id="newReviewButton">
         <% if user_signed_in? && !@reviews.exists?(user_id: current_user.id) %>
           <div class="flex justify-end mx-10 mt-5 mb-5">
-            <%= link_to 'レビューを書く', new_shop_review_path(@shop), class: 'btn bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300', data: { turbo_frame: 'review_modal' } %>
+            <%= link_to t('.create_review'), new_shop_review_path(@shop), class: 'btn bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300', data: { turbo_frame: 'review_modal' } %>
           </div>
         <% end %>
       </div>

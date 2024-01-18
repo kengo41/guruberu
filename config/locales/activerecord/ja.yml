@@ -1,10 +1,5 @@
 ja:
   activerecord:
-    models:
-      user: ユーザー
-      shop: お店
-      gourmet: グルメ
-      bookmark_list: ブックマークリスト
     attributes:
       user:
         confirmation_sent_at: パスワード確認送信時刻

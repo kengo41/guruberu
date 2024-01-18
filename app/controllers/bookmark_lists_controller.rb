@@ -19,7 +19,7 @@ class BookmarkListsController < ApplicationController
   def create
     @bookmark_list = current_user.bookmark_lists.build(list_params)
     if @bookmark_list.save
-      flash.now.notice = "リストを作成しました"
+      flash.now.notice = t('defaults.message.created_list')
       render turbo_stream: [
         turbo_stream.update("flash", partial: "shared/flash_message")
       ]
@@ -30,7 +30,7 @@ class BookmarkListsController < ApplicationController
 
   def update
     if @bookmark_list.update(list_params)
-      flash.now.notice = "リスト名を更新しました"
+      flash.now.notice = t('defaults.message.updated_list')
       render turbo_stream: [
         turbo_stream.replace(@bookmark_list),
         turbo_stream.update("flash", partial: "shared/flash_message")
@@ -42,7 +42,7 @@ class BookmarkListsController < ApplicationController
 
   def destroy
     if @bookmark_list.destroy!
-      redirect_to my_page_path, success: "リストを削除しました"
+      redirect_to my_page_path, success: t('defaults.message.deleted_list')
     end
   end
 

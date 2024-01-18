@@ -15,8 +15,8 @@
             <%= f.text_area :content, class: 'w-full rounded-xl p-2 border border-gray-300' %>
           </div>
 
-          <%= f.submit '更新する', class: 'w-full py-2 px-4 bg-orange-500 text-white rounded-xl hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-200' %>
-          <p class="w-full py-2 px-4 bg-gray-500 text-white text-center rounded-xl hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-200" data-action="click->review-modal#closeModal">キャンセル</p>
+          <%= f.submit class: 'w-full py-2 px-4 bg-orange-500 text-white rounded-xl hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-200' %>
+          <p class="w-full py-2 px-4 bg-gray-500 text-white text-center rounded-xl hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-200" data-action="click->review-modal#closeModal"><%= t('.cancel') %></p>
         </div>
       <% end %>
     </div>

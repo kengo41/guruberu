@@ -117,7 +117,6 @@ export default class extends Controller {
 
     if (flashContainerElement) {
       flashContainerElement.appendChild(flashContainer);
-      flashContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setTimeout(() => {
         flashContainerElement.removeChild(flashContainer);
       }, 5000)

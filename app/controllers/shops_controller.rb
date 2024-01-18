@@ -11,7 +11,7 @@ class ShopsController < ApplicationController
         @longitude = location.longitude
         set_shops(@latitude, @longitude)
       else
-        flash.now[:danger] = "入力が正しくありません"
+        flash.now[:danger] = t('defaults.message.input_failed')
       end
     elsif params[:latitude].present? && params[:longitude].present?
       @latitude = params[:latitude]
@@ -27,7 +27,7 @@ class ShopsController < ApplicationController
     @reviews = @shop.reviews.includes(:user).order(created_at: :desc)
   end
 
-  def bookmarks_ranking
+  def bookmark_ranking
     @shops = Shop.joins(:bookmarks).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
   end
 
@@ -35,11 +35,11 @@ class ShopsController < ApplicationController
 
   def set_shops(latitude, longitude)
     prefecture = fetch_prefecture_by_coordinates(latitude, longitude)
-    flash.now[:danger] = "お店が見つかりません" unless prefecture.present?
+    flash.now[:danger] = t('defaults.message.not_found') unless prefecture.present?
     @gourmets = fetch_gourmet_by_prefectures(prefecture)
     @shops = fetch_shop_by_gourmets(@gourmets, latitude, longitude) if @gourmets
-    flash.now[:danger] = "お店が見つかりません" unless @shops.present?
     @shops = filter_shops(@shops)
+    flash.now[:danger] = t('defaults.message.not_found') unless @shops.present?
   end
 
   def filter_shops(shops)

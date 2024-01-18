@@ -2,18 +2,18 @@
   <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="modal" data-modal-target="backGround" data-action="click->modal#closeBackground">
     <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-[450px]">
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-base md:text-lg font-semibold">リストへ保存</h2>
+        <h2 class="text-base md:text-lg font-semibold"><%= t('.title') %></h2>
         <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->modal#closeModal"></i>
       </div>
       <% @bookmark_lists.each do |list| %>
-        <div class="flex justify-center mb-5 border-b pb-2 list-button" data-action="click->modal#<%= Bookmark.bookmark_list_present?(@shop, list) ? 'closeUnbookmark' : 'closeBookmark' %>" data-list-id="<%= list.id %>">
+        <div class="flex justify-center mb-5 border-b pb-2 hover:underline list-button" data-action="click->modal#<%= Bookmark.bookmark_list_present?(@shop, list) ? 'closeUnbookmark' : 'closeBookmark' %>" data-list-id="<%= list.id %>">
           <input type="checkbox" class="mr-2" <%= 'checked' if Bookmark.bookmark_list_present?(@shop, list) %>>
           <button><%= list.name %></button>
         </div>
       <% end %>
-      <div class="flex justify-center border-b pb-2">
+      <div class="flex justify-center border-b pb-2 font-bold hover:underline">
         <i class="fa-solid fa-plus mt-1 mr-2"></i>
-        <%= link_to "リストを作成", new_bookmark_list_path, data: { turbo_frame: 'modal' }, class: 'text-center' %>
+        <%= link_to t('.create'), new_bookmark_list_path, data: { turbo_frame: 'modal' }, class: 'text-center' %>
       </div>
     </div>
   </div>
