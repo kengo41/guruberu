@@ -135,4 +135,20 @@ export default class extends Controller {
       bookmarkCountElement.textContent = count ? currentBookmarkCount + 1 : currentBookmarkCount - 1;
     }
   }
+
+  openFilter() {
+    var filterModal = document.getElementById('filterModal');
+    filterModal.style.display = 'block';
+  }
+
+  closeFilter() {
+    var filterModal = document.getElementById('filterModal');
+    filterModal.style.display = 'none';
+  }
+
+  closeBackgroundFilter(event) {
+    if(event.target === this.backGroundTarget) {
+      this.closeFilter();
+    }
+  }
 }

@@ -13,12 +13,15 @@
 
   <div id="map" class="w-11/12 h-96 rounded-xl mt-10 mb-10"></div>
   <%= javascript_include_tag "google_maps" %>
-  <script defer="defer" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&libraries=places&callback=initMap" ></script>
+  <script defer="defer" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&libraries=places&callback=initMap"></script>
 
   <% if @shops.present? %>
     <div class="card w-11/12 z-0 mb-10">
       <div class="flex flex-col justify-center items-center h-full">
-        <h2 class="text-left text-3xl border-b border-gray-500 w-11/12 p-5"><%= t('.shop') %></h2>
+        <h2 class="flex justify-between items-center text-left text-3xl border-b border-gray-500 w-11/12 p-5">
+          <%= t('.shop') %>
+          <i class="fa-solid fa-sliders" data-controller="modal" data-action="click->modal#openFilter"></i>
+        </h2>
         <%= render 'filter' %>
         <div class="w-11/12">
           <%= render @shops %>
