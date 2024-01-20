@@ -1,10 +1,10 @@
-<%= turbo_frame_tag 'review_modal' do %>
-  <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="review-modal" data-review-modal-target="backGround" data-action="click->review-modal#closeBackground">
+<%= turbo_frame_tag 'modal' do %>
+  <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="modal" data-modal-target="backGround" data-action="click->modal#closeBackground">
     <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-[450px]">
       <div class="flex justify-end items-center">
-        <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->review-modal#closeModal"></i>
+        <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->modal#closeModal"></i>
       </div>
-      <%= form_with model: @review, url: review_path(@review), data: { action: "turbo:submit-end->review-modal#close" }, method: :patch do |f| %>
+      <%= form_with model: @review, url: review_path(@review), data: { action: "turbo:submit-end->modal#closeModal" }, method: :patch do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="max-w-lg mx-auto p-2 md:p-6 bg-white rounded-xl space-y-2 md:space-y-4">
           <%= f.label :rating, class: 'block font-medium text-sm text-gray-700' %>
@@ -16,7 +16,7 @@
           </div>
 
           <%= f.submit class: 'w-full py-2 px-4 bg-orange-500 text-white rounded-xl hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-200' %>
-          <p class="w-full py-2 px-4 bg-gray-500 text-white text-center rounded-xl hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-200" data-action="click->review-modal#closeModal"><%= t('.cancel') %></p>
+          <p class="w-full py-2 px-4 bg-gray-500 text-white text-center rounded-xl hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-200" data-action="click->modal#closeModal"><%= t('.cancel') %></p>
         </div>
       <% end %>
     </div>

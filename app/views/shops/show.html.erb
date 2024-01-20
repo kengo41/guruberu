@@ -43,7 +43,7 @@
       <div id="newReviewButton">
         <% if user_signed_in? && !@reviews.exists?(user_id: current_user.id) %>
           <div class="flex justify-end mx-10 mt-5 mb-5">
-            <%= link_to t('.create_review'), new_shop_review_path(@shop), class: 'btn bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300', data: { turbo_frame: 'review_modal' } %>
+            <%= link_to t('.create_review'), new_shop_review_path(@shop), class: 'btn bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300', data: { turbo_frame: 'modal' } %>
           </div>
         <% end %>
       </div>
