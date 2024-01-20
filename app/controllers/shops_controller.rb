@@ -94,6 +94,7 @@ class ShopsController < ApplicationController
       results = JSON.parse(response)["results"]
 
       results.each do |place_data|
+        next unless place_data['rating'] && place_data['business_status'] == 'OPERATIONAL'
         shop = Shop.find_or_create_from_api_data(place_data, gourmet)
         shops << shop unless shops.any? { |s| s.place_id == shop.place_id }
       end
