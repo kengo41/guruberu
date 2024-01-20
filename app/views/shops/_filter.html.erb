@@ -1,34 +1,40 @@
-<%= form_with url: home_path, method: :get do |f| %>
-  <%= f.hidden_field :latitude, value: @latitude %>
-  <%= f.hidden_field :longitude, value: @longitude %>
+<div id="filterModal" class="hidden">
+  <div class="fixed inset-0 flex items-center justify-center z-50 bg-gray-500 bg-opacity-50" data-controller="modal" data-modal-target="backGround" data-action="click->modal#closeBackgroundFilter">
+    <div class="modal-content bg-white rounded-xl shadow-lg p-10 w-[450px]">
+      <div class="flex justify-end items-center">
+        <i class="fa-solid fa-xmark h-6 w-6 hover:text-yellow-500" data-action="click->modal#closeFilter"></i>
+      </div>
 
-  <div class="bg-base-200 p-4 m-5 rounded-xl shadow-lg">
-    <div class="flex justify-between">
-      <div class="flex flex-col mr-8">
-        <div class="font-bold mb-4 underline"><%= t('defaults.rating_filter') %></div>
-        <div class="flex items-center mb-2">
-          <%= f.check_box :rating, { checked: params[:rating].present? && params[:rating].to_f >= 4.0 }, 4.0 %>
-          <%= f.label :rating, t('defaults.more_than_four'), class: 'ml-2' %>
+      <%= form_with url: home_path, method: :get do |f| %>
+        <%= f.hidden_field :latitude, value: @latitude %>
+        <%= f.hidden_field :longitude, value: @longitude %>
+
+        <div class="flex flex-col justify-center mt-4">
+          <div class="text-lg font-bold mb-2"><%= t('defaults.rating_filter') %></div>
+          <div class="flex justify-center mb-5 border-b pb-2">
+            <%= f.check_box :rating, { checked: params[:rating].present? && params[:rating].to_f >= 4.0 }, 4.0 %>
+            <%= f.label :rating, t('defaults.more_than_four') %>
+          </div>
+          <div class="flex justify-center mb-5 border-b pb-2">
+            <%= f.check_box :total_ratings, { checked: params[:total_ratings].present? && params[:total_ratings].to_i >= 100 }, 100 %>
+            <%= f.label :total_ratings, t('defaults.more_than_one_hundred') %>
+          </div>
+
+          <div class="text-lg font-bold mb-2"><%= t('defaults.price_level_filter') %></div>
+          <div class="flex justify-center mb-5 border-b pb-2">
+            <%= f.select :price_level, [[t('defaults.not_select'), nil], [t('defaults.moderate')], [t('defaults.expensive')]], selected: params[:price_level], class:"select select-bordered" %>
+          </div>
+
+          <div class="text-lg font-bold mb-2"><%= t('defaults.gourmet_filter') %></div>
+          <div class="flex justify-center mb-5 border-b pb-2">
+            <%= f.select :gourmet, [[t('defaults.not_select'), nil]] + @gourmets, selected: params[:gourmet], class: 'select select-bordered' %>
+          </div>
+
+          <div class="ml-auto">
+            <%= f.submit t('defaults.refine_search'), class: 'bg-blue-500 text-white p-2 rounded-md ml-2 hover:bg-blue-700 hover:opacity-75 mt-5 ml-auto' %>
+          </div>
         </div>
-        <div class="flex items-center">
-          <%= f.check_box :total_ratings, { checked: params[:total_ratings].present? && params[:total_ratings].to_i >= 100 }, 100 %>
-          <%= f.label :total_ratings, t('defaults.more_than_one_hundred'), class: 'ml-2' %>
-        </div>
-      </div>
-
-      <div class="flex flex-col mr-8">
-        <div class="font-bold mb-4 underline"><%= t('defaults.price_level_filter') %></div>
-        <%= f.select :price_level, [[t('defaults.not_select'), nil], [t('defaults.moderate')], [t('defaults.expensive')]], selected: params[:price_level], class: 'select select-bordered' %>
-      </div>
-
-      <div class="flex flex-col">
-        <div class="font-bold mb-4 underline"><%= t('defaults.gourmet_filter') %></div>
-        <%= f.select :gourmet, [[t('defaults.not_select'), nil]] + @gourmets, selected: params[:gourmet], class: 'select select-bordered' %>
-      </div>
-    </div>
-
-    <div class="text-center">
-      <%= f.submit t('defaults.refine_search'), class: 'bg-blue-500 text-white p-2 rounded-md ml-2 hover:bg-blue-700 hover:opacity-75 mt-5 ml-5' %>
+      <% end %>
     </div>
   </div>
-<% end %>
+</div>
