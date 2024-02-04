@@ -15,8 +15,10 @@
         <%= t('defaults.route') %>
       </a>
     </div>
-    <div class="absolute top-1 right-1 ">
-      <%= render 'bookmark_icon', shop: shop %>
-    </div>
+    <% if user_signed_in? %>
+      <div class="absolute top-1 right-1 ">
+        <%= render 'bookmark_icon', shop: shop %>
+      </div>
+    <% end %>
   </div>
 </div>

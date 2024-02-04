@@ -1,5 +1,6 @@
 ja:
   defaults:
+    sign_up: 新規登録
     sign_in: ログイン
     sign_out: ログアウト
     search_shop: お店検索
@@ -26,8 +27,9 @@ ja:
     not_select: 選択しない
     moderate: お手頃
     expensive: 高級
-    refine_search: 絞り込み
-    rating_filter: 評価で絞る
+    all_select: 全て
+    refine_search: 絞り込む
+    rating_filter: Google評価で絞る
     price_level_filter: 価格帯で絞る
     gourmet_filter: グルメで絞る
     more_than_four: 4.0以上
@@ -46,7 +48,7 @@ ja:
       phone_number: 電話番号
       opening_hours: 営業時間
       website: 公式サイト
-      rating: 評価
+      rating: Google評価
       price_level: 価格帯
       review: レビュー
       create_review: レビューを書く
@@ -75,8 +77,6 @@ ja:
   gourmets:
     index:
       title: 全国ご当地グルメ一覧
-      all_select: 全て
-      refine_search: 絞り込み
     show:
       recommend_shop: おすすめのお店
       gourmet_list: グルメ一覧

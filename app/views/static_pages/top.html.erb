@@ -2,15 +2,18 @@
   <div class="hero-overlay bg-black bg-opacity-30"></div>
   <div class="hero-content text-center text-neutral-content">
     <div class="max-w-4xl mx-auto">
-      <h1 class="text-white mb-4 text-2xl md:text-4xl font-bold">
-        そこでしか味わえないおいしいを。
+      <h1 class="text-white mb-4 text-xl md:text-4xl font-bold">
+        そこでしか味わえない美味しさを。
       </h1>
-      <h1 class="text-white mb-8 text-2xl md:text-4xl font-bold tracking-tight">
+      <h1 class="text-white mb-8 text-xl md:text-4xl font-bold tracking-tight">
         さあ、ご当地を味わおう！<br>
       </h1>
       <div class="flex justify-center">
-        <%= link_to t('defaults.search_shop'), home_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white mr-10' %>
-        <%= link_to t('defaults.search_gourmet'), gourmets_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white' %>
+        <%= link_to t('defaults.sign_in'), new_user_session_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white mr-10' %>
+        <%= link_to t('defaults.sign_up'), new_user_registration_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white' %>
+      </div>
+      <div class="text-center text-white mt-4">
+        ※ログインすることで、絞り込み検索機能やお店の保存機能などをご利用いただけます。
       </div>
     </div>
   </div>
