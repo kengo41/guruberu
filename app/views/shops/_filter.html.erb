@@ -9,6 +9,12 @@
         <%= f.hidden_field :latitude, value: @latitude %>
         <%= f.hidden_field :longitude, value: @longitude %>
 
+        <div class="flex flex-col justify-center items-center">
+          <div id="filterLoadingIndicator" class="hidden">
+            <div class="animate-spin rounded-full h-8 w-8 border-t-2 border-blue-500 border-4 border-b-0"></div>
+          </div>
+        </div>
+
         <div class="flex flex-col justify-center mt-4">
           <div class="text-lg font-bold mb-2"><%= t('defaults.rating_filter') %></div>
           <div class="flex justify-center mb-5 border-b pb-2">
@@ -31,10 +37,16 @@
           </div>
 
           <div class="ml-auto">
-            <%= f.submit t('defaults.refine_search'), class: 'bg-blue-500 text-white p-2 rounded-md ml-2 hover:bg-blue-700 hover:opacity-75 mt-5 ml-auto' %>
+            <%= f.submit t('defaults.refine_search'), class: 'bg-blue-500 text-white p-2 rounded-md ml-2 hover:bg-blue-700 hover:opacity-75 mt-5 ml-auto', id: 'filterButton'  %>
           </div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
+
+<script>
+document.getElementById("filterButton").addEventListener("click", function() {
+  document.getElementById("filterLoadingIndicator").style.display = "block";
+});
+</script>
