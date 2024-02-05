@@ -1,6 +1,6 @@
 <div class="grid place-items-center mb-20">
   <h1 class="text-2xl m-10 underline"><%= t('defaults.my_page') %></h1>
-  <div class="card w-4/5">
+  <div class="card w-11/12 md:w-4/5">
     <div class="flex justify-evenly items-center">
       <%= image_tag 'logo.png', class: 'w-48 h-48 rounded-full object-cover' %>
       <div class="flex flex-col ml-4">
@@ -10,7 +10,7 @@
     </div>
     <div class="card-body p-10">
       <div class="flex flex-col">
-        <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5 mb-4"><%= t('defaults.bookmark_list') %></h2>
+        <h2 class="text-left text-xl border-b border-gray-500 p-5 mb-4"><%= t('defaults.bookmark_list') %></h2>
         <% if @bookmark_lists.any? %>
           <% @bookmark_lists.each do |list| %>
             <div class="card bg-base-200 border-gray-500 shadow-md m-2">
@@ -27,7 +27,7 @@
     </div>
     <div class="card-body p-10">
       <div class="flex flex-col">
-        <h2 class="text-left text-xl border-b border-gray-500 w-11/12 p-5 mb-4"><%= t('.review_shop') %></h2>
+        <h2 class="text-left text-xl border-b border-gray-500 p-5 mb-4"><%= t('.review_shop') %></h2>
         <% if @reviews.any? %>
           <% @reviews.each do |review| %>
             <div class="card bg-base-200 border-gray-500 shadow-md m-2">
@@ -41,10 +41,12 @@
               </div>
               <div class="flex flex-col mt-1.5 mb-1.5 p-2 mx-2 border rounded-lg border-gray-300">
                 <div class="flex items-center mb-2">
-                  <i class="fa-solid fa-star text-yellow-500 mr-2"></i>
-                  <p class="text-[10px] md:text-sm"><%= review.rating_as_number %></p>
+                  <% 5.times do |i| %>
+                    <% star_class = review.rating > i ? 'text-yellow-500' : 'text-gray-300' %>
+                    <i class="fa-solid fa-star <%= star_class %> mr-2"></i>
+                  <% end %>
                 </div>
-                <p class="text-[10px] md:text-sm"><%= review.content %></p>
+                <p class="text-sm"><%= review.content %></p>
               </div>
             </div>
           <% end %>

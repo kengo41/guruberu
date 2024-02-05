@@ -129,7 +129,7 @@ export default class extends Controller {
   }
 
   updateBookmarkCount(count) {
-    const bookmarkCountElement = document.getElementById("bookmarkCount");
+    const bookmarkCountElement = document.getElementById(`bookmarkCount-${shopId}`);
     if (bookmarkCountElement) {
       const currentBookmarkCount = parseInt(bookmarkCountElement.textContent, 10);
       bookmarkCountElement.textContent = count ? currentBookmarkCount + 1 : currentBookmarkCount - 1;

@@ -43,18 +43,10 @@ class ShopsController < ApplicationController
   end
 
   def filter_shops(shops)
-    if params[:rating].present?
-      shops.select! { |shop| shop.rating && shop.rating >= params[:rating].to_f }
-    end
-    if params[:total_ratings].present?
-      shops.select! { |shop| shop.total_ratings && shop.total_ratings >= params[:total_ratings].to_i }
-    end
-    if params[:price_level].present?
-      shops.select! { |shop| shop.price_level && shop.price_level == params[:price_level].to_s }
-    end
-    if params[:gourmet].present?
-      shops.select! { |shop| shop.gourmets.any? { |gourmet| gourmet.name == params[:gourmet] } }
-    end
+    shops.select! { |shop| shop.rating && shop.rating >= params[:rating].to_f } if params[:rating].present?
+    shops.select! { |shop| shop.total_ratings && shop.total_ratings >= params[:total_ratings].to_i } if params[:total_ratings].present?
+    shops.select! { |shop| shop.price_level && shop.price_level == params[:price_level].to_s } if params[:price_level].present?
+    shops.select! { |shop| shop.gourmets.any? { |gourmet| gourmet.name == params[:gourmet] } } if params[:gourmet].present?
     shops
   end
 
@@ -94,7 +86,7 @@ class ShopsController < ApplicationController
       results = JSON.parse(response)["results"]
 
       results.each do |place_data|
-        next unless place_data['rating'] && place_data['business_status'] == 'OPERATIONAL'
+        next unless place_data['rating'].to_f >= 3 && place_data['user_ratings_total'].to_i >= 10 && place_data['business_status'] == 'OPERATIONAL'
         shop = Shop.find_or_create_from_api_data(place_data, gourmet)
         shops << shop unless shops.any? { |s| s.place_id == shop.place_id }
       end
