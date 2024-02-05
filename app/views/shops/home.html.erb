@@ -16,7 +16,7 @@
   <script defer="defer" src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['API_KEY'] %>&libraries=places&callback=initMap"></script>
 
   <% if @shops.present? %>
-    <div class="card w-11/12 z-0 mb-10">
+    <div class="card w-11/12 z-0">
       <div class="flex flex-col justify-center items-center h-full">
         <h2 class="flex justify-between items-center text-left text-3xl border-b border-gray-500 w-11/12 p-5">
           <%= t('.shop') %>
@@ -27,6 +27,9 @@
           <%= render @shops %>
         </div>
       </div>
+    </div>
+    <div class="mt-10 mb-10">
+      <%= paginate @shops %>
     </div>
   <% end %>
 </div>

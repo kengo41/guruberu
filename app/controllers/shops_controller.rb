@@ -44,8 +44,9 @@ class ShopsController < ApplicationController
     prefecture = fetch_prefecture_by_coordinates(latitude, longitude)
     flash.now[:danger] = t('defaults.message.not_found') unless prefecture.present?
     @gourmets = fetch_gourmet_by_prefectures(prefecture)
-    @shops = fetch_shop_by_gourmets(@gourmets, latitude, longitude) if @gourmets
-    @shops = filter_shops(@shops)
+    not_filtered_shops = fetch_shop_by_gourmets(@gourmets, latitude, longitude) if @gourmets
+    filtered_shops = filter_shops(not_filtered_shops)
+    @shops = Kaminari.paginate_array(filtered_shops).page(params[:page])
     flash.now[:danger] = t('defaults.message.not_found') unless @shops.present?
   end
 
@@ -54,7 +55,7 @@ class ShopsController < ApplicationController
     shops.select! { |shop| shop.total_ratings && shop.total_ratings >= params[:total_ratings].to_i } if params[:total_ratings].present?
     shops.select! { |shop| shop.price_level && shop.price_level == params[:price_level].to_s } if params[:price_level].present?
     shops.select! { |shop| shop.gourmets.any? { |gourmet| gourmet.name == params[:gourmet] } } if params[:gourmet].present?
-    if params[:sorting].present? && [t('defaults.rating'), t('defaults.total_ratings'), t('defaults.distance')].include?(params[:sorting])
+    if params[:sorting].present?
       if params[:sorting] == t('defaults.rating')
         shops.sort_by! { |shop| -shop.rating.to_f }
       elsif params[:sorting] == t('defaults.total_ratings')
