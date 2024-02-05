@@ -3,7 +3,7 @@
 
   <%= form_tag bookmark_ranking_shops_path, method: :get, class: "mb-4" do %>
     <%= select_tag :prefecture_id, options_from_collection_for_select(Prefecture.all, 'id', 'name', selected: @selected_prefecture_id), prompt: t('defaults.all_select'), class: 'border border-gray-300 p-2 rounded-md' %>
-    <%= submit_tag t('defaults.refine_search'), class: 'bg-blue-500 text-white p-2 rounded-md ml-2 hover:bg-blue-700 hover:opacity-75' %>
+    <%= submit_tag t('defaults.refine_search'), class: 'bg-orange-500 text-white p-2 rounded-md ml-2 hover:bg-orange-700 hover:opacity-75' %>
   <% end %>
 
   <div class="card w-11/12 md:w-4/5">
