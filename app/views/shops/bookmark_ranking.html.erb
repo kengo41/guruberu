@@ -1,5 +1,11 @@
 <div class="grid place-items-center mt-10 mb-10">
   <h1 class="text-2xl mb-5 underline"><%= t('defaults.bookmark_ranking') %></h1>
+
+  <%= form_tag bookmark_ranking_shops_path, method: :get, class: "mb-4" do %>
+    <%= select_tag :prefecture_id, options_from_collection_for_select(Prefecture.all, 'id', 'name', selected: @selected_prefecture_id), prompt: t('defaults.all_select'), class: 'border border-gray-300 p-2 rounded-md' %>
+    <%= submit_tag t('defaults.refine_search'), class: 'bg-blue-500 text-white p-2 rounded-md ml-2 hover:bg-blue-700 hover:opacity-75' %>
+  <% end %>
+
   <div class="card w-11/12 md:w-4/5">
     <% @shops.each_with_index do |shop, index| %>
       <div class="bg-base-200 p-4 m-5 rounded-xl shadow-lg relative">

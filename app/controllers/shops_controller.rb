@@ -28,7 +28,14 @@ class ShopsController < ApplicationController
   end
 
   def bookmark_ranking
-    @shops = Shop.joins(:bookmarks).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
+    @selected_prefecture_id = params[:prefecture_id]
+    if @selected_prefecture_id.present?
+      @shops = Shop.joins(:gourmets).where(gourmets: { prefecture_id: @selected_prefecture_id })
+                  .joins(:bookmarks).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
+    else
+      @shops = Shop.joins(:bookmarks).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
+    end
+    flash.now[:danger] = t('defaults.message.not_found') unless @shops.present?
   end
 
   private
@@ -91,7 +98,6 @@ class ShopsController < ApplicationController
         shops << shop unless shops.any? { |s| s.place_id == shop.place_id }
       end
     end
-    shops.sort_by! { |shop| -shop.rating.to_f }
     shops
   end
 end
