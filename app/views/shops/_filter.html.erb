@@ -38,7 +38,7 @@
 
           <div class="text-lg font-bold mb-2"><%= t('defaults.sorting') %></div>
           <div class="flex justify-center mb-5 border-b pb-2">
-            <%= f.select :sorting, [[t('defaults.not_select'), nil], [t('defaults.rating')], [t('defaults.total_ratings')]], selected: params[:sorting], class: 'select select-bordered' %>
+            <%= f.select :sorting, [[t('defaults.not_select'), nil], [t('defaults.rating')], [t('defaults.total_ratings')], [t('defaults.distance')]], selected: params[:sorting], class: 'select select-bordered' %>
           </div>
 
           <div class="ml-auto">

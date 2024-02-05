@@ -37,6 +37,7 @@ ja:
     sorting: 並べ替え
     rating: 評価点数順
     total_ratings: 評価件数順
+    distance: 距離順
   time:
     formats:
       simple: "%Y/%m/%d %H:%M"

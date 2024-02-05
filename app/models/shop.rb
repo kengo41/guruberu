@@ -60,4 +60,8 @@ class Shop < ApplicationRecord
     response = Net::HTTP.get(URI("#{base_url}?#{parameters.to_query}"))
     JSON.parse(response)['result']
   end
+
+  def distance_to(current_latitude, current_longitude)
+    Geocoder::Calculations.distance_between([current_latitude, current_longitude], [latitude, longitude])
+  end
 end
