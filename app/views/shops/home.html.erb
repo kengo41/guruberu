@@ -20,9 +20,7 @@
       <div class="flex flex-col justify-center items-center h-full">
         <h2 class="flex justify-between items-center text-left text-3xl border-b border-gray-500 w-11/12 p-5">
           <%= t('.shop') %>
-          <% if user_signed_in? %>
-            <i class="fa-solid fa-sliders" data-controller="modal" data-action="click->modal#openFilter"></i>
-          <% end %>
+          <i class="fa-solid fa-sliders" data-controller="modal" data-action="click->modal#openFilter"></i>
         </h2>
         <%= render 'filter' %>
         <div class="w-11/12">
