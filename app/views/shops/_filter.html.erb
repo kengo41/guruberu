@@ -36,6 +36,11 @@
             <%= f.select :gourmet, [[t('defaults.not_select'), nil]] + @gourmets, selected: params[:gourmet], class: 'select select-bordered' %>
           </div>
 
+          <div class="text-lg font-bold mb-2"><%= t('defaults.sorting') %></div>
+          <div class="flex justify-center mb-5 border-b pb-2">
+            <%= f.select :sorting, [[t('defaults.not_select'), nil], [t('defaults.rating')], [t('defaults.total_ratings')]], selected: params[:sorting], class: 'select select-bordered' %>
+          </div>
+
           <div class="ml-auto">
             <%= f.submit t('defaults.refine_search'), class: 'bg-blue-500 text-white p-2 rounded-md ml-2 hover:bg-blue-700 hover:opacity-75 mt-5 ml-auto', id: 'filterButton'  %>
           </div>

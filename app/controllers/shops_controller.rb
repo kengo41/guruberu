@@ -54,6 +54,13 @@ class ShopsController < ApplicationController
     shops.select! { |shop| shop.total_ratings && shop.total_ratings >= params[:total_ratings].to_i } if params[:total_ratings].present?
     shops.select! { |shop| shop.price_level && shop.price_level == params[:price_level].to_s } if params[:price_level].present?
     shops.select! { |shop| shop.gourmets.any? { |gourmet| gourmet.name == params[:gourmet] } } if params[:gourmet].present?
+    if params[:sorting].present? && [t('defaults.rating'), t('defaults.total_ratings')].include?(params[:sorting])
+      if params[:sorting] == t('defaults.rating')
+        shops.sort_by! { |shop| -shop.rating.to_f }
+      elsif params[:sorting] == t('defaults.total_ratings')
+        shops.sort_by! { |shop| -shop.total_ratings.to_i }
+      end
+    end
     shops
   end
 
