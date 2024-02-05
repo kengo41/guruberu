@@ -2,7 +2,7 @@
   <h1 class="text-2xl m-10 underline"><%= t('defaults.my_page') %></h1>
   <div class="card w-11/12 md:w-4/5">
     <div class="flex justify-evenly items-center">
-      <%= image_tag 'logo.png', class: 'w-48 h-48 rounded-full object-cover' %>
+      <%= image_tag @user.icon.url, class: 'w-48 h-48 rounded-full object-cover' %>
       <div class="flex flex-col ml-4">
         <p class="mb-10 text-center text-lg font-semibold"><%= @user.name %></p>
         <%= link_to t('.edit'), edit_my_page_path, class: 'btn bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300' %>
