@@ -20,7 +20,7 @@
           <%= f.hidden_field :icon_cache %>
         </div>
         <div class='mt-3 mb-3'>
-          <%= image_tag @user.icon.url, class: 'rounded-circle', id: 'preview', size: '100x100' %>
+          <%= image_tag @user.icon.url, class: 'w-24 h-24 rounded-full object-cover', id: 'preview' %>
         </div>
         <div class="actions">
           <%= f.submit class: 'bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition duration-300 w-full mt-10' %>
