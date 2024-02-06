@@ -2,6 +2,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  mount_uploader :icon, IconUploader
+
   after_create :create_initial_list
 
   has_many :bookmark_lists, dependent: :destroy

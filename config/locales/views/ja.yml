@@ -34,6 +34,10 @@ ja:
     gourmet_filter: グルメで絞る
     more_than_four: 4.0以上
     more_than_one_hundred: 100件以上
+    sorting: 並べ替え
+    rating: 評価点数順
+    total_ratings: 評価件数順
+    distance: 距離順
   time:
     formats:
       simple: "%Y/%m/%d %H:%M"

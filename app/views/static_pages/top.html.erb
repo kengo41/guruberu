@@ -9,11 +9,11 @@
         さあ、ご当地を味わおう！<br>
       </h1>
       <div class="flex justify-center">
-        <%= link_to t('defaults.sign_in'), new_user_session_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white mr-10' %>
-        <%= link_to t('defaults.sign_up'), new_user_registration_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white' %>
+        <%= link_to 'ログイン', new_user_session_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white mr-10' %>
+        <%= link_to '今すぐ探す', home_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white mr-10' %>
       </div>
       <div class="text-center text-white mt-4">
-        ※ログインすることで、絞り込み検索機能やお店の保存機能などをご利用いただけます。
+        ※ログインすることで、『リスト保存』機能と『レビュー投稿』機能をご利用いただけます。
       </div>
     </div>
   </div>

@@ -28,7 +28,14 @@ class ShopsController < ApplicationController
   end
 
   def bookmark_ranking
-    @shops = Shop.joins(:bookmarks).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
+    @selected_prefecture_id = params[:prefecture_id]
+    if @selected_prefecture_id.present?
+      @shops = Shop.joins(:gourmets).where(gourmets: { prefecture_id: @selected_prefecture_id })
+                  .joins(:bookmarks).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
+    else
+      @shops = Shop.joins(:bookmarks).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
+    end
+    flash.now[:danger] = t('defaults.message.not_found') unless @shops.present?
   end
 
   private
@@ -37,8 +44,9 @@ class ShopsController < ApplicationController
     prefecture = fetch_prefecture_by_coordinates(latitude, longitude)
     flash.now[:danger] = t('defaults.message.not_found') unless prefecture.present?
     @gourmets = fetch_gourmet_by_prefectures(prefecture)
-    @shops = fetch_shop_by_gourmets(@gourmets, latitude, longitude) if @gourmets
-    @shops = filter_shops(@shops)
+    not_filtered_shops = fetch_shop_by_gourmets(@gourmets, latitude, longitude) if @gourmets
+    filtered_shops = filter_shops(not_filtered_shops)
+    @shops = Kaminari.paginate_array(filtered_shops).page(params[:page])
     flash.now[:danger] = t('defaults.message.not_found') unless @shops.present?
   end
 
@@ -47,6 +55,15 @@ class ShopsController < ApplicationController
     shops.select! { |shop| shop.total_ratings && shop.total_ratings >= params[:total_ratings].to_i } if params[:total_ratings].present?
     shops.select! { |shop| shop.price_level && shop.price_level == params[:price_level].to_s } if params[:price_level].present?
     shops.select! { |shop| shop.gourmets.any? { |gourmet| gourmet.name == params[:gourmet] } } if params[:gourmet].present?
+    if params[:sorting].present?
+      if params[:sorting] == t('defaults.rating')
+        shops.sort_by! { |shop| -shop.rating.to_f }
+      elsif params[:sorting] == t('defaults.total_ratings')
+        shops.sort_by! { |shop| -shop.total_ratings.to_i }
+      elsif params[:sorting] == t('defaults.distance')
+        shops.sort_by! { |shop| shop.distance_to(@latitude, @longitude) }
+      end
+    end
     shops
   end
 
@@ -91,7 +108,6 @@ class ShopsController < ApplicationController
         shops << shop unless shops.any? { |s| s.place_id == shop.place_id }
       end
     end
-    shops.sort_by! { |shop| -shop.rating.to_f }
     shops
   end
 end
