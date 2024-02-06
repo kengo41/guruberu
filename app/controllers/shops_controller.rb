@@ -20,6 +20,7 @@ class ShopsController < ApplicationController
     end
 
     set_map_data(@latitude, @longitude, @shops)
+    @shops = Kaminari.paginate_array(@shops).page(params[:page])
   end
 
   def show
@@ -45,8 +46,7 @@ class ShopsController < ApplicationController
     flash.now[:danger] = t('defaults.message.not_found') unless prefecture.present?
     @gourmets = fetch_gourmet_by_prefectures(prefecture)
     not_filtered_shops = fetch_shop_by_gourmets(@gourmets, latitude, longitude) if @gourmets
-    filtered_shops = filter_shops(not_filtered_shops)
-    @shops = Kaminari.paginate_array(filtered_shops).page(params[:page])
+    @shops = filter_shops(not_filtered_shops)
     flash.now[:danger] = t('defaults.message.not_found') unless @shops.present?
   end
 
