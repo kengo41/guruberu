@@ -35,7 +35,7 @@ https://www.gotochi-gurumetto.com
 
 |リスト保存|レビュー|保存ランキング|
 |--------|-------|-----------|
-|[![Image from Gyazo](https://i.gyazo.com/9615d249e09203851a089177677a23c8.gif)](https://gyazo.com/9615d249e09203851a089177677a23c8)|[![Image from Gyazo](https://i.gyazo.com/ee0e1b8ce4b6fee495c6063ea6bc0d5e.gif)](https://gyazo.com/ee0e1b8ce4b6fee495c6063ea6bc0d5e)|[![Image from Gyazo](https://i.gyazo.com/725e07c5565d9853465a0948adf2f43b.gif)](https://gyazo.com/725e07c5565d9853465a0948adf2f43b)|
+|[![Image from Gyazo](https://i.gyazo.com/9615d249e09203851a089177677a23c8.gif)](https://gyazo.com/9615d249e09203851a089177677a23c8)|[![Image from Gyazo](https://i.gyazo.com/ee0e1b8ce4b6fee495c6063ea6bc0d5e.gif)](https://gyazo.com/ee0e1b8ce4b6fee495c6063ea6bc0d5e)|[![Image from Gyazo](https://i.gyazo.com/4adc020d5ac3a836048c41524a88c88e.gif)](https://gyazo.com/4adc020d5ac3a836048c41524a88c88e)|
 |お店を作成したリストへ保存することができます。|お店の評価とコメントを投稿することができます。|全ユーザーの保存数でランキング表示され、保存数も確認することができます。|
 
 ### その他機能
