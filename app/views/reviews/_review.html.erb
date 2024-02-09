@@ -1,7 +1,7 @@
 <%= turbo_frame_tag review do %>
   <div class="card w-full bg-base-200 shadow-xl mb-6">
     <div class="flex mx-2 items-center">
-      <%= image_tag review.user.icon.url, class: 'w-9 h-9 rounded-full' %>
+      <%= image_tag review.user.icon.url, class: 'w-9 h-9 rounded-full object-cover' %>
       <div class="ml-2 text-sm flex flex-col">
         <p><%= review.user.name %></p>
         <p class="text-gray-500"><%= l review.created_at, format: :simple %></p>
