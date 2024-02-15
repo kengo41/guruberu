@@ -32,6 +32,7 @@ RSpec.describe "UserSessions", type: :system do
       context 'ログアウトをクリック' do
         it 'ログアウト成功' do
           login_as(user)
+          find('.drawer-button').click
           click_link 'ログアウト'
           expect(page).to have_content 'ログアウトしました。'
           expect(current_path).to eq root_path
