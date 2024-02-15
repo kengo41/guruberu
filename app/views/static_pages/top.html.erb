@@ -6,11 +6,11 @@
         そこでしか味わえない美味しさを。
       </h1>
       <h1 class="text-white mb-8 text-xl md:text-4xl font-bold tracking-tight">
-        さあ、ご当地を味わおう！<br>
+        さあ、ご当地を味わおう！
       </h1>
       <div class="flex justify-center">
-        <%= link_to 'ログイン', new_user_session_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white mr-10' %>
-        <%= link_to '今すぐ探す', home_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white mr-10' %>
+        <%= link_to t('defaults.sign_in'), new_user_session_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white mr-10' %>
+        <%= link_to t('defaults.search_shop'), home_path, class: 'btn bg-orange-500 hover:bg-orange-600 text-white mr-10' %>
       </div>
       <div class="text-center text-white mt-4">
         ※ログインすることで、『リスト保存』機能と『レビュー投稿』機能をご利用いただけます。
