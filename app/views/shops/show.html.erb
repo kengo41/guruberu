@@ -1,8 +1,11 @@
 <div class="grid place-items-center">
   <div class="card w-full md:w-11/12 lg:w-11/12 xl:w-11/12 my-10">
     <div class="flex flex-col md:flex-row">
-      <div class="card-body md:w-2/3 pt-5">
-        <h1 class="text-3xl font-bold underline mb-4"><%= @shop.name %></h1>
+      <div class="card-body md:w-2/3 pt-5" data-controller="modal">
+        <div class="flex items-center justify-between">
+          <h1 class="text-3xl font-bold underline mb-4"><%= @shop.name %></h1>
+          <%= render 'bookmark_icon', shop: @shop %>
+        </div>
         <p class="text-lg"><span class="font-semibold"><%= t('.address') %>：</span><%= @shop.address %></p>
         <p class="text-lg"><span class="font-semibold"><%= t('.phone_number') %>：</span><%= @shop.phone_number %></p>
         <p class="text-lg"><span class="font-semibold"><%= t('.opening_hours') %>：</span></p>
