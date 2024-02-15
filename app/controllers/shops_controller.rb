@@ -31,8 +31,7 @@ class ShopsController < ApplicationController
   def bookmark_ranking
     @selected_prefecture_id = params[:prefecture_id]
     if @selected_prefecture_id.present?
-      @shops = Shop.joins(:gourmets).where(gourmets: { prefecture_id: @selected_prefecture_id })
-                  .joins(:bookmarks).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
+      @shops = Shop.joins(:gourmets, :bookmarks).where(gourmets: { prefecture_id: @selected_prefecture_id }).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
     else
       @shops = Shop.joins(:bookmarks).group('shops.id').order('COUNT(bookmarks.id) DESC').limit(10)
     end
