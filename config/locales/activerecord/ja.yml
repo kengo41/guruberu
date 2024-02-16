@@ -30,3 +30,5 @@ ja:
       review:
         rating: 評価
         content: コメント
+      bookmark_list:
+        name: リスト名
